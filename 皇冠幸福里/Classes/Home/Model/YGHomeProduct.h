@@ -16,7 +16,6 @@
 @property (nonatomic, copy) NSString *bannerTitleChs;
 @property (nonatomic, strong) NSArray *gridProducts;
 @property (nonatomic, strong) NSArray *rowProducts;
-@property (nonatomic, strong) NSArray *rollImages;
 @property (nonatomic, assign, getter=hasMap) BOOL map;
 @property (nonatomic, copy) NSString *bottomBtnImage;
 @end

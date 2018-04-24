@@ -7,98 +7,120 @@
 //
 
 #import "YGHomeVC.h"
+#import "YGHomeCell.h"
+#import "YGHomeFrame.h"
+#import "YGProductsRequest.h"
+#import "YGProduct.h"
+#import "YGHomeProduct.h"
+#import "YGLoadingView.h"
+
+#define YGStarProductRequestFinishNote @"YGStarProductRequestFinishNote"
 
 @interface YGHomeVC ()
-
+@property (nonatomic, strong) NSMutableArray *homeFrames;
+@property (nonatomic, weak) UIView *loadingView;
 @end
 
 @implementation YGHomeVC
+
+#pragma mark - 懒加载
+- (NSMutableArray *)homeFrames
+{
+    if (_homeFrames == nil) {
+        _homeFrames = [NSMutableArray array];
+    }
+    return _homeFrames;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setTitleView];
+    
+    [self buildHomeFrames];
+    
+    [self setLoadingView];
+    
+    [self addObserver];
 }
 
 - (void)setTitleView
 {
     // 设置HomeVC的navigationBar
     UIImageView *titleView = [[UIImageView alloc] init];
-    titleView.frame = CGRectMake(0, 0, 127, 40);
+    titleView.frame = CGRectMake(0, 0, 120, 38);
     titleView.image = [UIImage imageNamed:@"logo"];
     self.navigationItem.titleView = titleView;
-
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (void)setLoadingView
+{
+    UIView *loadingView = [[UIView alloc] init];
+    loadingView.backgroundColor = [UIColor redColor];
+    loadingView.frame = CGRectMake(0, 0, kScreenW, kScreenH);
     
-    // Configure the cell...
+    YGLoadingView *waitingCircle = [[YGLoadingView alloc] init];
+    [waitingCircle startAnimating];
+    [loadingView addSubview:waitingCircle];
+    waitingCircle.center = loadingView.center;
+
+    [self.view addSubview:loadingView];
+    [self.view bringSubviewToFront:loadingView];
+    self.loadingView = loadingView;
+}
+
+- (void)addObserver
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeLoadingView:) name:YGStarProductRequestFinishNote object:nil];
+}
+
+- (void)removeLoadingView:(NSNotification *)note
+{
+    [self.loadingView removeFromSuperview];
+    YGHomeFrame *starFrame = note.userInfo[@"starProduct"];
+    [self.homeFrames addObject:starFrame];
+    [self.tableView reloadData];
+}
+
+- (void)buildHomeFrames
+{
+    YGHomeFrame *homeFrame = [[YGHomeFrame alloc] init];
+    YGHomeProduct *starProduct = [[YGHomeProduct alloc] init];
     
+    NSDictionary *starParam = @{@"groupId" : @"1"};
+    [YGProductsRequest getProductWithParams:starParam success:^(id result) {
+        NSArray *adsProducts = [YGProduct mj_objectArrayWithKeyValuesArray:result];
+        NSMutableArray *adsImages = [NSMutableArray array];
+        for (YGProduct *product in adsProducts) {
+            [adsImages addObject:product.productImg];
+        }
+        starProduct.adsImages = adsImages;
+        homeFrame.homeProduct = starProduct;
+        NSDictionary *userInfo = @{@"starProduct" : homeFrame};
+        [[NSNotificationCenter defaultCenter] postNotificationName:YGStarProductRequestFinishNote object:nil userInfo:userInfo];
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
+
+
+#pragma mark - Table view data source, delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.homeFrames.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    YGHomeCell *cell = [YGHomeCell cellWithTableView:tableView];
+    cell.homeFrame = self.homeFrames[indexPath.row];
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    YGHomeFrame *homeFrame = self.homeFrames[indexPath.row];
+    return homeFrame.cellHeight;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

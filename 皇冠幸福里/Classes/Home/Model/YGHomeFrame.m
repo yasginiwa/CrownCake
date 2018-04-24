@@ -23,6 +23,7 @@
         CGFloat adsW = kScreenW;
         CGFloat adsH = 200;
         self.adsFrame = CGRectMake(adsX, adsY, adsW, adsH);
+        self.cellHeight = CGRectGetMaxY(self.adsFrame);
     } else {
         self.adsFrame = CGRectZero;
     }
@@ -60,24 +61,14 @@
         self.rowFrame = CGRectZero;
     }
     
-    // 计算roll 轮播产品展示的frame
-    if (self.homeProduct.rollImages.count) {
-        CGFloat rollX = 0;
-        CGFloat rollY = CGRectGetMaxY(self.rowFrame);
-        CGFloat rollW = kScreenW;
-        CGFloat rollH = 200;
-        self.rollFrame = CGRectMake(rollX, rollY, rollW, rollH);
-    } else {
-        self.rollFrame = CGRectZero;
-    }
-    
     // 计算map 地图的frame
     if (self.homeProduct.hasMap) {
         CGFloat mapX = 0;
-        CGFloat mapY = CGRectGetMaxY(self.rollFrame);
+        CGFloat mapY = CGRectGetMaxY(self.rowFrame);
         CGFloat mapW = kScreenW;
         CGFloat mapH = 300;
         self.mapFrame = CGRectMake(mapX, mapY, mapW, mapH);
+        self.cellHeight = CGRectGetMaxY(self.mapFrame);
     } else {
         self.mapFrame = CGRectZero;
     }
@@ -89,6 +80,7 @@
         CGFloat bottomBtnW = kScreenW;
         CGFloat bottomBtnH = 50;
         self.bottomBtnFrame = CGRectMake(bottomBtnX, bottomBtnY, bottomBtnW, bottomBtnH);
+        self.cellHeight = CGRectGetMaxY(self.bottomBtnFrame);
     } else {
         self.bottomBtnFrame = CGRectZero;
     }

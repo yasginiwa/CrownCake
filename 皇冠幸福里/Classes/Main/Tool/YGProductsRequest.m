@@ -10,7 +10,7 @@
 #import "YGUrlString.h"
 
 @implementation YGProductsRequest
-+ (void)getProductWithParams:(NSDictionary *)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
++ (void)getProductWithParams:(NSDictionary *)params success:(void (^)(id result))success failure:(void (^)(NSError *error))failure
 {
     NSString *url = [NSString stringWithFormat:@"%@%@", baseUrl, GetProductsURL];
     [YGHttpTool get:url params:params success:^(id result) {

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class YGHomeFrame;
+
 @interface YGHomeCell : UITableViewCell
+@property (nonatomic, strong) YGHomeFrame *homeFrame;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @end

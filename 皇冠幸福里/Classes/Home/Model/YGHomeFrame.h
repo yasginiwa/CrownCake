@@ -18,7 +18,6 @@
 @property (nonatomic, assign) CGRect bannerFrame;
 @property (nonatomic, assign) CGRect gridFrame;
 @property (nonatomic, assign) CGRect rowFrame;
-@property (nonatomic, assign) CGRect rollFrame;
 @property (nonatomic, assign) CGRect mapFrame;
 @property (nonatomic, assign) CGRect bottomBtnFrame;
 @property (nonatomic, assign) CGFloat cellHeight;

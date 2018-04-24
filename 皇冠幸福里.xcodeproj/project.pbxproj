@@ -102,6 +102,8 @@
 		B6375807208E24F9008A6EA1 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B63757BE208E24F9008A6EA1 /* SVRadialGradientLayer.m */; };
 		B6375808208E24F9008A6EA1 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = B63757C1208E24F9008A6EA1 /* XRCarouselView.m */; };
 		B6375809208E24F9008A6EA1 /* XRPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = B63757C2208E24F9008A6EA1 /* XRPlaceholder.png */; };
+		B6C1FFCA208F5E490089B091 /* HomeCell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6C1FFC9208F5E490089B091 /* HomeCell.plist */; };
+		B6C1FFCD208F845D0089B091 /* YGLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C1FFCC208F845C0089B091 /* YGLoadingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -298,6 +300,9 @@
 		B63757C0208E24F9008A6EA1 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
 		B63757C1208E24F9008A6EA1 /* XRCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRCarouselView.m; sourceTree = "<group>"; };
 		B63757C2208E24F9008A6EA1 /* XRPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XRPlaceholder.png; sourceTree = "<group>"; };
+		B6C1FFC9208F5E490089B091 /* HomeCell.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = HomeCell.plist; sourceTree = "<group>"; };
+		B6C1FFCB208F845C0089B091 /* YGLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGLoadingView.h; sourceTree = "<group>"; };
+		B6C1FFCC208F845C0089B091 /* YGLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGLoadingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +352,7 @@
 				733A25CA208DC39D00D9D001 /* Info.plist */,
 				733A25CB208DC39D00D9D001 /* main.m */,
 				736F0EC6208EC86400EB702E /* PrefixHeader.pch */,
+				B6C1FFC9208F5E490089B091 /* HomeCell.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -558,6 +564,8 @@
 		736F0EAF208EC16300EB702E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B6C1FFCB208F845C0089B091 /* YGLoadingView.h */,
+				B6C1FFCC208F845C0089B091 /* YGLoadingView.m */,
 				736F0EC3208EC1F100EB702E /* YGTabBar.h */,
 				736F0EC4208EC1F100EB702E /* YGTabBar.m */,
 			);
@@ -891,6 +899,7 @@
 				B6375805208E24F9008A6EA1 /* SVProgressHUD.bundle in Resources */,
 				B6375809208E24F9008A6EA1 /* XRPlaceholder.png in Resources */,
 				B63757CD208E24F9008A6EA1 /* Info.plist in Resources */,
+				B6C1FFCA208F5E490089B091 /* HomeCell.plist in Resources */,
 				733A25C9208DC39D00D9D001 /* LaunchScreen.storyboard in Resources */,
 				B63757E5208E24F9008A6EA1 /* Info.plist in Resources */,
 				733A25C6208DC39D00D9D001 /* Assets.xcassets in Resources */,
@@ -909,6 +918,7 @@
 				B63757F1208E24F9008A6EA1 /* SDWebImageDownloader.m in Sources */,
 				B63757EC208E24F9008A6EA1 /* SDImageCacheConfig.m in Sources */,
 				B63757C6208E24F9008A6EA1 /* UIView+Extension.m in Sources */,
+				B6C1FFCD208F845D0089B091 /* YGLoadingView.m in Sources */,
 				B63757F6208E24F9008A6EA1 /* SDWebImageManager.m in Sources */,
 				B63757D4208E24F9008A6EA1 /* NSArray+MASAdditions.m in Sources */,
 				B63757C9208E24F9008A6EA1 /* AFSecurityPolicy.m in Sources */,
