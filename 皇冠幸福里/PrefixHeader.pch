@@ -1,0 +1,43 @@
+//
+//  PrefixHeader.pch
+//  皇冠幸福里
+//
+//  Created by LiYugang on 2018/4/24.
+//  Copyright © 2018年 LiYugang. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "AFNetworking.h"
+#import "MJExtension.h"
+#import "Masonry.h"
+#import "UIView+Extension.h"
+#import "UIButton+Extension.h"
+#import "UIImage+Extsnsion.h"
+#import "NSArray+RandomObj.h"
+#import "SVProgressHUD.h"
+
+#define kScreenW [UIScreen mainScreen].bounds.size.width
+#define kScreenH [UIScreen mainScreen].bounds.size.height
+#define YGColorWithRGBA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+
+#define accessTokenFilePath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"accessToken.data"]
+
+
+// 登录
+#define kScanError  @"请选择正确的条形码，一条一条的那种，不是二维码！"
+#define kErrorMobile @"请输入正确的手机号！"
+#define kNoCheckCode @"请输入验证码！"
+#define kErrorCheckCode @"验证码错误！手机没收到验证码吗？"
+#define kErrorVIPCard @"请输入正确的会员卡号！"
+#define kScanCodeTip @"条形码扫描时间可能需要一点时间, 请保持框内!"
+#define kCheckCodeRequestSuccess @"验证码请求成功!"
+#define kLoginRequestSuccess @"登录成功!"
+
+// 网络请求
+#define kErrorNetwork @"网络似乎出现了一些问题？！"
+
+
+#endif /* PrefixHeader_pch */

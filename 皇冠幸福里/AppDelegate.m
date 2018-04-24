@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "YGMainTabBarVC.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    YGMainTabBarVC *mainTabBarVC = [[YGMainTabBarVC alloc] init];
+    self.window = [[UIWindow alloc] init];
+    [self.window makeKeyAndVisible];
+    self.window.rootViewController = mainTabBarVC;
+    
     return YES;
 }
 
