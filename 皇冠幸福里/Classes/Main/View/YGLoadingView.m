@@ -1,70 +1,48 @@
 //
 //  YGLoadingView.m
-//  Demo
+//  皇冠幸福里
 //
-//  Created by YGLEE on 2018/3/28.
+//  Created by LiYugang on 2018/4/25.
 //  Copyright © 2018年 LiYugang. All rights reserved.
 //
 
 #import "YGLoadingView.h"
+#import "YGActivityIndicator.h"
 
 @interface YGLoadingView ()
-@property (nonatomic, strong) UIImageView *activityIndicator;
+@property (nonatomic, weak) UIImageView *logoView;
+@property (nonatomic, weak) YGActivityIndicator *waitingIndicator;
 @end
+
 
 @implementation YGLoadingView
 
-#pragma mark - 懒加载
-- (UIImageView *)activityIndicator
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    if (_activityIndicator == nil) {
-        _activityIndicator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading"]];
-        self.backgroundColor = [UIColor clearColor];
-        [self addSubview:_activityIndicator];
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = YGColorWithRGBA(240, 240, 240, 1.0);
+        
+        UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loadingBg"]];
+        [self addSubview:logoView];
+        self.logoView = logoView;
+        
+        YGActivityIndicator *waitingIndicator = [[YGActivityIndicator alloc] init];
+        [waitingIndicator startAnimating];
+        [self addSubview:waitingIndicator];
+        self.waitingIndicator = waitingIndicator;
     }
-    return _activityIndicator;
-}
-
-// 模拟官方 重写setter方法 控件隐藏时暂停动画
-- (void)setHidesWhenStopped:(BOOL)hidesWhenStopped
-{
-    _hidesWhenStopped = hidesWhenStopped;
-    if (hidesWhenStopped) {
-        self.activityIndicator.hidden = YES;
-        [self stopAnimating];
-    } else {
-        self.activityIndicator.hidden = NO;
-        [self startAnimating];
-    }
-}
-
-// 开始动画
-- (void)startAnimating
-{
-    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    anim.fromValue = [NSNumber numberWithFloat:.0f];
-    anim.toValue = [NSNumber numberWithFloat:M_PI * 2];
-    anim.duration = 1.f;
-    anim.autoreverses = NO;
-    anim.fillMode = kCAFillModeForwards;
-    anim.repeatCount = MAXFLOAT;
-    [self.activityIndicator.layer addAnimation:anim forKey:nil];
-    self.activityIndicator.hidden = NO;
-}
-
-// 动画结束
-- (void)stopAnimating
-{
-    [self.activityIndicator.layer removeAllAnimations];
-    self.activityIndicator.hidden = YES;
+    return self;
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    [self.activityIndicator mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self);
-        make.width.height.mas_equalTo(50);
-    }];
+    
+    self.logoView.x = kScreenW - self.logoView.size.height;
+    self.logoView.centerY = kScreenH * 0.5;
+    
+    self.waitingIndicator.x = CGRectGetMaxX(self.logoView.frame) + 10;
+    self.waitingIndicator.centerY = kScreenH * 0.5;    
 }
+
 @end

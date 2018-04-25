@@ -38,6 +38,11 @@
     [self setTitleView];
     
     [self buildHomeFrames];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     [self setLoadingView];
     
@@ -55,18 +60,10 @@
 
 - (void)setLoadingView
 {
-    UIView *loadingView = [[UIView alloc] init];
-    loadingView.backgroundColor = [UIColor redColor];
-    loadingView.frame = CGRectMake(0, 0, kScreenW, kScreenH);
-    
-    YGLoadingView *waitingCircle = [[YGLoadingView alloc] init];
-    [waitingCircle startAnimating];
-    [loadingView addSubview:waitingCircle];
-    waitingCircle.center = loadingView.center;
-
+    YGLoadingView *loadingView = [[YGLoadingView alloc] init];
     [self.view addSubview:loadingView];
-    [self.view bringSubviewToFront:loadingView];
-    self.loadingView = loadingView;
+    self.loadingView.frame = self.view.bounds;
+    NSLog(@"%@", NSStringFromCGRect(loadingView.frame));
 }
 
 - (void)addObserver

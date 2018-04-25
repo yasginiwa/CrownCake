@@ -12,6 +12,9 @@
 		733A25C6208DC39D00D9D001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 733A25C5208DC39D00D9D001 /* Assets.xcassets */; };
 		733A25C9208DC39D00D9D001 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 733A25C7208DC39D00D9D001 /* LaunchScreen.storyboard */; };
 		733A25CC208DC39D00D9D001 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 733A25CB208DC39D00D9D001 /* main.m */; };
+		7366CE03209074AA009E6B76 /* YGActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7366CE02209074AA009E6B76 /* YGActivityIndicator.m */; };
+		7366CE05209074E0009E6B76 /* YGActivityIndicator.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7366CE04209074E0009E6B76 /* YGActivityIndicator.bundle */; };
+		7366CE0820907625009E6B76 /* YGLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7366CE0720907625009E6B76 /* YGLoadingView.m */; };
 		736F0EB6208EC18900EB702E /* YGUrlString.m in Sources */ = {isa = PBXBuildFile; fileRef = 736F0EB4208EC18900EB702E /* YGUrlString.m */; };
 		736F0EBB208EC19200EB702E /* YGHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 736F0EB8208EC19200EB702E /* YGHttpTool.m */; };
 		736F0EBC208EC19200EB702E /* YGProductsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 736F0EBA208EC19200EB702E /* YGProductsRequest.m */; };
@@ -103,7 +106,6 @@
 		B6375808208E24F9008A6EA1 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = B63757C1208E24F9008A6EA1 /* XRCarouselView.m */; };
 		B6375809208E24F9008A6EA1 /* XRPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = B63757C2208E24F9008A6EA1 /* XRPlaceholder.png */; };
 		B6C1FFCA208F5E490089B091 /* HomeCell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6C1FFC9208F5E490089B091 /* HomeCell.plist */; };
-		B6C1FFCD208F845D0089B091 /* YGLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C1FFCC208F845C0089B091 /* YGLoadingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +117,11 @@
 		733A25C8208DC39D00D9D001 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		733A25CA208DC39D00D9D001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		733A25CB208DC39D00D9D001 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7366CE01209074AA009E6B76 /* YGActivityIndicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGActivityIndicator.h; sourceTree = "<group>"; };
+		7366CE02209074AA009E6B76 /* YGActivityIndicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGActivityIndicator.m; sourceTree = "<group>"; };
+		7366CE04209074E0009E6B76 /* YGActivityIndicator.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = YGActivityIndicator.bundle; sourceTree = "<group>"; };
+		7366CE0620907625009E6B76 /* YGLoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGLoadingView.h; sourceTree = "<group>"; };
+		7366CE0720907625009E6B76 /* YGLoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGLoadingView.m; sourceTree = "<group>"; };
 		736F0EB4208EC18900EB702E /* YGUrlString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGUrlString.m; sourceTree = "<group>"; };
 		736F0EB5208EC18900EB702E /* YGUrlString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGUrlString.h; sourceTree = "<group>"; };
 		736F0EB7208EC19200EB702E /* YGProductsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGProductsRequest.h; sourceTree = "<group>"; };
@@ -301,8 +308,6 @@
 		B63757C1208E24F9008A6EA1 /* XRCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRCarouselView.m; sourceTree = "<group>"; };
 		B63757C2208E24F9008A6EA1 /* XRPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XRPlaceholder.png; sourceTree = "<group>"; };
 		B6C1FFC9208F5E490089B091 /* HomeCell.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = HomeCell.plist; sourceTree = "<group>"; };
-		B6C1FFCB208F845C0089B091 /* YGLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGLoadingView.h; sourceTree = "<group>"; };
-		B6C1FFCC208F845C0089B091 /* YGLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGLoadingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -564,10 +569,13 @@
 		736F0EAF208EC16300EB702E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B6C1FFCB208F845C0089B091 /* YGLoadingView.h */,
-				B6C1FFCC208F845C0089B091 /* YGLoadingView.m */,
 				736F0EC3208EC1F100EB702E /* YGTabBar.h */,
 				736F0EC4208EC1F100EB702E /* YGTabBar.m */,
+				7366CE01209074AA009E6B76 /* YGActivityIndicator.h */,
+				7366CE02209074AA009E6B76 /* YGActivityIndicator.m */,
+				7366CE04209074E0009E6B76 /* YGActivityIndicator.bundle */,
+				7366CE0620907625009E6B76 /* YGLoadingView.h */,
+				7366CE0720907625009E6B76 /* YGLoadingView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -902,6 +910,7 @@
 				B6C1FFCA208F5E490089B091 /* HomeCell.plist in Resources */,
 				733A25C9208DC39D00D9D001 /* LaunchScreen.storyboard in Resources */,
 				B63757E5208E24F9008A6EA1 /* Info.plist in Resources */,
+				7366CE05209074E0009E6B76 /* YGActivityIndicator.bundle in Resources */,
 				733A25C6208DC39D00D9D001 /* Assets.xcassets in Resources */,
 				B63757D8208E24F9008A6EA1 /* Info.plist in Resources */,
 				733A25C4208DC39D00D9D001 /* Main.storyboard in Resources */,
@@ -918,7 +927,6 @@
 				B63757F1208E24F9008A6EA1 /* SDWebImageDownloader.m in Sources */,
 				B63757EC208E24F9008A6EA1 /* SDImageCacheConfig.m in Sources */,
 				B63757C6208E24F9008A6EA1 /* UIView+Extension.m in Sources */,
-				B6C1FFCD208F845D0089B091 /* YGLoadingView.m in Sources */,
 				B63757F6208E24F9008A6EA1 /* SDWebImageManager.m in Sources */,
 				B63757D4208E24F9008A6EA1 /* NSArray+MASAdditions.m in Sources */,
 				B63757C9208E24F9008A6EA1 /* AFSecurityPolicy.m in Sources */,
@@ -950,6 +958,7 @@
 				733A25CC208DC39D00D9D001 /* main.m in Sources */,
 				B63757DC208E24F9008A6EA1 /* MJPropertyKey.m in Sources */,
 				B63757E1208E24F9008A6EA1 /* NSObject+MJProperty.m in Sources */,
+				7366CE0820907625009E6B76 /* YGLoadingView.m in Sources */,
 				736F0ECC208ECD0500EB702E /* YGDiscoveryVC.m in Sources */,
 				736F0EE4208EF34200EB702E /* YGBottomBtn.m in Sources */,
 				B6375803208E24F9008A6EA1 /* SVIndefiniteAnimatedView.m in Sources */,
@@ -981,6 +990,7 @@
 				B6375807208E24F9008A6EA1 /* SVRadialGradientLayer.m in Sources */,
 				B63757D0208E24F9008A6EA1 /* MASConstraintMaker.m in Sources */,
 				B63757F8208E24F9008A6EA1 /* SDWebImageTransition.m in Sources */,
+				7366CE03209074AA009E6B76 /* YGActivityIndicator.m in Sources */,
 				736F0EEA208EF38A00EB702E /* YGHomeProduct.m in Sources */,
 				B63757E7208E24F9008A6EA1 /* NSButton+WebCache.m in Sources */,
 				B63757C8208E24F9008A6EA1 /* AFNetworkReachabilityManager.m in Sources */,
