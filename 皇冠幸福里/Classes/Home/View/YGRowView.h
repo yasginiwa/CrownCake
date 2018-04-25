@@ -10,5 +10,4 @@
 
 @interface YGRowView : UIView
 @property (nonatomic, strong) NSArray *products;
-@property (nonatomic, assign) CGFloat rowHeight;
 @end

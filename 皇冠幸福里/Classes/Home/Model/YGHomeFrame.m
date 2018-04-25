@@ -44,7 +44,7 @@
         CGFloat gridX = 0;
         CGFloat gridY = CGRectGetMaxY(self.bannerFrame);
         CGFloat gridW = kScreenW;
-        CGFloat gridH = self.gridView.gridHeight;
+        CGFloat gridH = 500;
         self.gridFrame = CGRectMake(gridX, gridY, gridW, gridH);
     } else {
         self.gridFrame = CGRectZero;
@@ -55,7 +55,7 @@
         CGFloat rowX = 0;
         CGFloat rowY = CGRectGetMaxY(self.gridFrame);
         CGFloat rowW = kScreenW;
-        CGFloat rowH = self.rowView.rowHeight;
+        CGFloat rowH = 500;
         self.rowFrame = CGRectMake(rowX, rowY, rowW, rowH);
     } else {
         self.rowFrame = CGRectZero;

@@ -17,6 +17,7 @@
 #import "UIImage+Extsnsion.h"
 #import "NSArray+RandomObj.h"
 #import "SVProgressHUD.h"
+#import "UIImageView+WebCache.h"
 
 #define kScreenW [UIScreen mainScreen].bounds.size.width
 #define kScreenH [UIScreen mainScreen].bounds.size.height

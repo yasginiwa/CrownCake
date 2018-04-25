@@ -38,11 +38,17 @@
 {
     [super layoutSubviews];
     
-    self.logoView.x = kScreenW - self.logoView.size.height;
-    self.logoView.centerY = kScreenH * 0.5;
+    CGFloat padding = 8;
+    CGFloat delta = self.logoView.width + self.waitingIndicator.width + padding;
     
-    self.waitingIndicator.x = CGRectGetMaxX(self.logoView.frame) + 10;
-    self.waitingIndicator.centerY = kScreenH * 0.5;    
+    self.logoView.x = (kScreenW - delta) * 0.5;
+    self.logoView.centerY = kScreenH * 0.5 + 15;
+    NSLog(@"%@", NSStringFromCGRect(self.logoView.frame));
+    
+    self.waitingIndicator.x = CGRectGetMaxX(self.logoView.frame) + padding;
+    self.waitingIndicator.centerY = kScreenH * 0.5;
+    self.waitingIndicator.width = 30;
+    self.waitingIndicator.height = 30;
 }
 
 @end

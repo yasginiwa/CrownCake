@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface YGBannerView : UIView
-@property (nonatomic, copy) NSString *titleTextChs;
-@property (nonatomic, copy) NSString *titleTextEn;
-@property (nonatomic, assign) CGFloat bannerHeight;
+@property (nonatomic, copy) NSString *textChs;
+@property (nonatomic, copy) NSString *textEn;
+@property (nonatomic, assign) CGFloat viewHeight;
 @end

@@ -7,47 +7,45 @@
 //
 
 #import "YGHomeVC.h"
-#import "YGHomeCell.h"
 #import "YGHomeFrame.h"
 #import "YGProductsRequest.h"
 #import "YGProduct.h"
 #import "YGHomeProduct.h"
 #import "YGLoadingView.h"
+#import "YGBannerView.h"
 
+#define YGAdsroductRequestFinishNote @"YGAdsProductRequestFinishNote"
 #define YGStarProductRequestFinishNote @"YGStarProductRequestFinishNote"
 
 @interface YGHomeVC ()
-@property (nonatomic, strong) NSMutableArray *homeFrames;
 @property (nonatomic, weak) UIView *loadingView;
 @end
 
 @implementation YGHomeVC
 
-#pragma mark - 懒加载
-- (NSMutableArray *)homeFrames
-{
-    if (_homeFrames == nil) {
-        _homeFrames = [NSMutableArray array];
-    }
-    return _homeFrames;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self setTitleView];
+//
+//    [self buildHomeFrames];
+    YGBannerView *bannerView = [[YGBannerView alloc] init];
+    bannerView.textEn = @"Star Product";
+    bannerView.textChs = @"明星产品";
+    bannerView.backgroundColor = [UIColor redColor];
     
-    [self buildHomeFrames];
+    [self.view addSubview:bannerView];
+    
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [self setLoadingView];
-    
-    [self addObserver];
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//
+//    [self setLoadingView];
+//
+//    [self addObserver];
+//}
 
 - (void)setTitleView
 {
@@ -57,67 +55,93 @@
     titleView.image = [UIImage imageNamed:@"logo"];
     self.navigationItem.titleView = titleView;
 }
+//
+//- (void)setLoadingView
+//{
+//    YGLoadingView *loadingView = [[YGLoadingView alloc] init];
+//    loadingView.frame = CGRectMake(0, 0, kScreenW, kScreenH);
+//    [self.navigationController.view addSubview:loadingView];
+//    [self.navigationController.view insertSubview:loadingView atIndex:1];
+//    self.loadingView = loadingView;
+//}
+//
+//- (void)addObserver
+//{
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(adsRemoveLoadingView:) name:YGAdsroductRequestFinishNote object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(starRemoveLoadingView:) name:YGStarProductRequestFinishNote object:nil];
+//}
+//
+//- (void)adsRemoveLoadingView:(NSNotification *)note
+//{
+//    [self.loadingView removeFromSuperview];
+//    YGHomeFrame *adsFrame = note.userInfo[@"adsProduct"];
+//    [self.homeFrames addObject:adsFrame];
+//    [self.tableView reloadData];
+//}
+//
+//- (void)starRemoveLoadingView:(NSNotification *)note
+//{
+//    [self.loadingView removeFromSuperview];
+//    NSArray *starProducts = note.userInfo[@"starProducts"];
+//    YGHomeFrame *starFrame = [[YGHomeFrame alloc] init];
+//    YGHomeProduct *starHomeProduct = [[YGHomeProduct alloc] init];
+//    starHomeProduct.gridProducts = starProducts;
+//    starHomeProduct.bannerTitleEn = @"Star Product";
+//    starHomeProduct.bannerTitleChs = @"明星产品";
+//    starHomeProduct.bottomBtnImage = @"换一换";
+//    starFrame.homeProduct = starHomeProduct;
+//    [self.homeFrames addObject:starFrame];
+//    [self.tableView reloadData];
+//}
 
-- (void)setLoadingView
-{
-    YGLoadingView *loadingView = [[YGLoadingView alloc] init];
-    [self.view addSubview:loadingView];
-    self.loadingView.frame = self.view.bounds;
-    NSLog(@"%@", NSStringFromCGRect(loadingView.frame));
-}
-
-- (void)addObserver
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeLoadingView:) name:YGStarProductRequestFinishNote object:nil];
-}
-
-- (void)removeLoadingView:(NSNotification *)note
-{
-    [self.loadingView removeFromSuperview];
-    YGHomeFrame *starFrame = note.userInfo[@"starProduct"];
-    [self.homeFrames addObject:starFrame];
-    [self.tableView reloadData];
-}
-
-- (void)buildHomeFrames
-{
-    YGHomeFrame *homeFrame = [[YGHomeFrame alloc] init];
-    YGHomeProduct *starProduct = [[YGHomeProduct alloc] init];
-    
-    NSDictionary *starParam = @{@"groupId" : @"1"};
-    [YGProductsRequest getProductWithParams:starParam success:^(id result) {
-        NSArray *adsProducts = [YGProduct mj_objectArrayWithKeyValuesArray:result];
-        NSMutableArray *adsImages = [NSMutableArray array];
-        for (YGProduct *product in adsProducts) {
-            [adsImages addObject:product.productImg];
-        }
-        starProduct.adsImages = adsImages;
-        homeFrame.homeProduct = starProduct;
-        NSDictionary *userInfo = @{@"starProduct" : homeFrame};
-        [[NSNotificationCenter defaultCenter] postNotificationName:YGStarProductRequestFinishNote object:nil userInfo:userInfo];
-    } failure:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
-}
+//- (void)buildHomeFrames
+//{
+//    YGHomeFrame *homeFrame = [[YGHomeFrame alloc] init];
+//    YGHomeProduct *adsProduct = [[YGHomeProduct alloc] init];
+//
+//    // ads cell
+//    NSDictionary *adsParam = @{@"groupId" : @"1"};
+//    [YGProductsRequest getProductWithParams:adsParam success:^(id result) {
+//        NSArray *adsProducts = [YGProduct mj_objectArrayWithKeyValuesArray:result];
+//        NSMutableArray *adsImages = [NSMutableArray array];
+//        for (YGProduct *product in adsProducts) {
+//            [adsImages addObject:product.productImg];
+//        }
+//        adsProduct.adsImages = adsImages;
+//        homeFrame.homeProduct = adsProduct;
+//        NSDictionary *userInfo = @{@"adsProduct" : homeFrame};
+//        [[NSNotificationCenter defaultCenter] postNotificationName:YGAdsroductRequestFinishNote object:nil userInfo:userInfo];
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
+//
+//    // star cell
+//    NSDictionary *starParam = @{@"groupId" : @"3"};
+//    [YGProductsRequest getProductWithParams:starParam success:^(id result) {
+//        NSArray *starProducts = [YGProduct mj_objectArrayWithKeyValuesArray:result];
+//        NSDictionary *userInfo = @{@"starProducts" : starProducts};
+//        [[NSNotificationCenter defaultCenter] postNotificationName:YGStarProductRequestFinishNote object:nil userInfo:userInfo];
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@", error);
+//    }];
+//}
 
 
 #pragma mark - Table view data source, delegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.homeFrames.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    YGHomeCell *cell = [YGHomeCell cellWithTableView:tableView];
-    cell.homeFrame = self.homeFrames[indexPath.row];
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    YGHomeFrame *homeFrame = self.homeFrames[indexPath.row];
-    return homeFrame.cellHeight;
-}
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return self.homeFrames.count;
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    YGHomeFrame *homeFrame = self.homeFrames[indexPath.row];
+//    return homeFrame.cellHeight;
+//}
 
 @end

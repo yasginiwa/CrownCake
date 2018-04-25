@@ -62,10 +62,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    [self.activityIndicator mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self);
-        make.width.height.mas_equalTo(30);
-    }];
+    self.activityIndicator.frame = self.bounds;
 }
 
 @end

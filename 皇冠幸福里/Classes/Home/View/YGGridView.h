@@ -18,5 +18,4 @@
 @interface YGGridView : UIView
 @property (nonatomic, weak) id<YGGridViewDelegate> delegate;
 @property (nonatomic, strong) NSArray *products;
-@property (nonatomic, assign) CGFloat gridHeight;
 @end

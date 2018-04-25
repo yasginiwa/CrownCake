@@ -36,7 +36,7 @@
 
 #define maxCol 2
 #define maxCount 4
-#define margin 30
+#define margin 20
 
 @implementation YGGridView
 - (instancetype)initWithFrame:(CGRect)frame
@@ -79,12 +79,6 @@
         CGFloat gridBtnY = margin + (margin + gridBtnH) * row;
         gridBtn.frame = CGRectMake(gridBtnX, gridBtnY, gridBtnW, gridBtnH);
     }
-}
-
-- (CGFloat)gridHeight
-{
-    YGGridButton *lastGridBtn = [self.subviews lastObject];
-    return CGRectGetMaxY(lastGridBtn.frame) + margin;
 }
 
 - (void)clickGridBtn:(YGGridButton *)btn

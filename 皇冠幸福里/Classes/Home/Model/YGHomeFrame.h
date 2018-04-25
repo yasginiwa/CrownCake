@@ -12,8 +12,6 @@
 
 @interface YGHomeFrame : NSObject
 @property (nonatomic, strong) YGHomeProduct *homeProduct;
-@property (nonatomic, weak) YGGridView *gridView;
-@property (nonatomic, weak) YGRowView *rowView;
 @property (nonatomic, assign) CGRect adsFrame;
 @property (nonatomic, assign) CGRect bannerFrame;
 @property (nonatomic, assign) CGRect gridFrame;
