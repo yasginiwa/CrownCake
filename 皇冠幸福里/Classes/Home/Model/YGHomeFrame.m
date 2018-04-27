@@ -19,7 +19,7 @@
     // 计算广告轮播的Frame
     if (homeProduct.adsImages.count) {
         CGFloat adsX = 0;
-        CGFloat adsY = kHomeCellMargin;
+        CGFloat adsY = 0;
         CGFloat adsW = kScreenW;
         CGFloat adsH = 200;
         self.adsFrame = CGRectMake(adsX, adsY, adsW, adsH);
@@ -52,9 +52,9 @@
     // 计算网格产品展示的frame
     if (homeProduct.gridProducts.count) {
         CGFloat gridX = 0;
-        CGFloat gridY = CGRectGetMaxY(self.bannerFrame) + kHomeCellMargin;
+        CGFloat gridY = CGRectGetMaxY(self.bannerFrame);
         CGFloat gridW = kScreenW;
-        CGFloat gridH = 500;
+        CGFloat gridH = 444;
         self.gridFrame = CGRectMake(gridX, gridY, gridW, gridH);
     } else {
         self.gridFrame = CGRectZero;
@@ -65,7 +65,7 @@
         CGFloat rowX = 0;
         CGFloat rowY = CGRectGetMaxY(self.gridFrame);
         CGFloat rowW = kScreenW;
-        CGFloat rowH = 500;
+        CGFloat rowH = 0;
         self.rowFrame = CGRectMake(rowX, rowY, rowW, rowH);
     } else {
         self.rowFrame = CGRectZero;
@@ -86,7 +86,12 @@
     // 计算底部按钮的frame
     if (homeProduct.bottomBtnImage.length) {
         CGFloat bottomBtnX = 0;
-        CGFloat bottomBtnY = CGRectGetMaxY(self.mapFrame);
+        CGFloat bottomBtnY;
+        if (homeProduct.gridProducts.count) {
+            bottomBtnY = CGRectGetMaxY(self.gridFrame);
+        } else {
+            bottomBtnY = CGRectGetMaxY(self.rowFrame);
+        }
         CGFloat bottomBtnW = kScreenW;
         CGFloat bottomBtnH = 50;
         self.bottomBtnFrame = CGRectMake(bottomBtnX, bottomBtnY, bottomBtnW, bottomBtnH);

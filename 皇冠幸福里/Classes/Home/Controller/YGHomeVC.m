@@ -76,8 +76,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     YGHomeCell *cell = [YGHomeCell cellWithTableView:tableView];
-    YGHomeFrame *homeFrame = self.homeFrames[indexPath.row];
-    cell.homeFrame = homeFrame;
+    cell.homeFrame = self.homeFrames[indexPath.row];
     return cell;
 }
 
@@ -85,6 +84,6 @@
 {
 //    YGHomeFrame *homeFrame = self.homeFrames[indexPath.row];
 //    return homeFrame.cellHeight;
-    return 600;
+    return 1000;
 }
 @end

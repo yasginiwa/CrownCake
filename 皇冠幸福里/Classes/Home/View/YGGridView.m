@@ -21,8 +21,6 @@
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-//        self.titleLabel.backgroundColor = [UIColor redColor];
-//        self.backgroundColor = [UIColor blueColor];
     }
     return self;
 }
@@ -81,19 +79,24 @@
     [super layoutSubviews];
     
     CGFloat gridBtnW = (kScreenW - (maxCol + 1) *margin) / maxCol;
-    CGFloat gridBtnH = gridBtnW;
+    CGFloat gridBtnH = gridBtnW + margin;
     for (int i = 0; i < maxCount; i++) {
         YGGridButton *gridBtn = self.subviews[i];
         [gridBtn addTarget:self action:@selector(clickGridBtn:) forControlEvents:UIControlEventTouchDown];
         int col = i % maxCol;
         int row = i / maxCol;
+        CGFloat gridBtnY;
+        if (row == 0) {
+            gridBtnY = 10 + (margin + gridBtnH) * row;
+        } else {
+            gridBtnY = margin + (margin + gridBtnH) * row;
+        }
         CGFloat gridBtnX = margin + (margin + gridBtnW) * col;
-        CGFloat gridBtnY = margin + (margin + gridBtnH) * row;
         gridBtn.frame = CGRectMake(gridBtnX, gridBtnY, gridBtnW, gridBtnH);
-        NSLog(@"%@", NSStringFromCGRect(gridBtn.frame));
     }
     YGGridButton *lastBtn = [self.subviews lastObject];
-    self.viewHeight = CGRectGetMaxY(lastBtn.frame);
+    self.width = kScreenW;
+    self.height = CGRectGetMaxY(lastBtn.frame) + 10;
 }
 
 - (void)clickGridBtn:(YGGridButton *)btn

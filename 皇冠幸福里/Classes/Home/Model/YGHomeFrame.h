@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class YGHomeProduct, YGGridView, YGRowView;
+@class YGHomeProduct;
 
 @interface YGHomeFrame : NSObject
 @property (nonatomic, strong) YGHomeProduct *homeProduct;
@@ -20,4 +20,6 @@
 @property (nonatomic, assign) CGRect mapFrame;
 @property (nonatomic, assign) CGRect bottomBtnFrame;
 @property (nonatomic, assign) CGFloat cellHeight;
+@property (nonatomic, assign) CGFloat gridHeight;
+@property (nonatomic, assign) CGFloat rowHeight;
 @end

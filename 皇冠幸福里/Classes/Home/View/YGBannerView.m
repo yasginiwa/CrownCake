@@ -36,12 +36,10 @@
         // 设置中文label
         UILabel *chsLabel = [[UILabel alloc] init];
         chsLabel.textAlignment = NSTextAlignmentCenter;
-        chsLabel.font = [UIFont systemFontOfSize:15];
+        chsLabel.font = [UIFont systemFontOfSize:16];
         chsLabel.textColor = [UIColor grayColor];
         [self addSubview:chsLabel];
         self.chsLabel = chsLabel;
-        
-        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }

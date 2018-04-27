@@ -76,24 +76,29 @@
 {
     _homeFrame = homeFrame;
     
-    self.adsView.frame = homeFrame.adsFrame;
+    [self setFrames];
     
-    self.bannerView.frame = homeFrame.bannerFrame;
-    
-    self.rollView.frame = homeFrame.rollFrame;
-    
-    self.gridView.frame = homeFrame.gridFrame;
-    
-    self.rowView.frame = homeFrame.rowFrame;
-    
-    self.bottomBtn.frame = homeFrame.bottomBtnFrame;
-    
-    self.mapView.frame = homeFrame.mapFrame;
-    
-    [self setupData];
+    [self setData];
 }
 
-- (void)setupData
+- (void)setFrames
+{
+    self.adsView.frame = self.homeFrame.adsFrame;
+    
+    self.bannerView.frame = self.homeFrame.bannerFrame;
+    
+    self.rollView.frame = self.homeFrame.rollFrame;
+    
+    self.gridView.frame = self.homeFrame.gridFrame;
+    
+    self.rowView.frame = self.homeFrame.rowFrame;
+    
+    self.bottomBtn.frame = self.homeFrame.bottomBtnFrame;
+    
+    self.mapView.frame = self.homeFrame.mapFrame;
+}
+
+- (void)setData
 {
     YGHomeProduct *homeProduct = self.homeFrame.homeProduct;
 
@@ -105,7 +110,7 @@
     self.rollView.imageArray = homeProduct.rollImages;
 
     self.gridView.products = homeProduct.gridProducts;
-
+    
     self.rowView.products = homeProduct.rowProducts;
 
     self.bottomBtn.image = homeProduct.bottomBtnImage;

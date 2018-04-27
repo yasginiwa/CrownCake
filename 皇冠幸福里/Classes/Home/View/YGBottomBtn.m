@@ -17,9 +17,7 @@
         [self setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self setTitle:self.text forState:UIControlStateNormal];
-        
-        self.imageView.contentMode = UIViewContentModeCenter;
-        [self setImage:[UIImage imageNamed:self.image] forState:UIControlStateNormal];
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return self;
 }
@@ -29,22 +27,54 @@
     
 }
 
-- (CGRect)titleRectForContentRect:(CGRect)contentRect
+//- (CGRect)titleRectForContentRect:(CGRect)contentRect
+//{
+//    CGFloat titleX;
+//    CGFloat titleY;
+//    CGFloat titleW;
+//    CGFloat titleH;
+//    if (self.text.length) {
+//        titleX = 0;
+//        titleY = 0;
+//        titleW = self.width * 0.7;
+//        titleH = self.height;
+//        return CGRectMake(titleX, titleY, titleW, titleH);
+//    } else {
+//        return CGRectZero;
+//    }
+//
+//}
+//
+//- (CGRect)imageRectForContentRect:(CGRect)contentRect
+//{
+//    CGFloat imageX;
+//    CGFloat imageY;
+//    CGFloat imageW;
+//    CGFloat imageH;
+//
+//    if (self.text.length) {
+//        imageX = self.width * 0.7;
+//        imageY = 0;
+//        imageW = self.width * 0.3;
+//        imageH = self.height;
+//    } else {
+//        imageX = 0;
+//        imageY = 0;
+//        imageW = self.width;
+//        imageH = self.height;
+//    }
+//    return CGRectMake(imageX, imageY, imageW, imageH);
+//}
+
+- (void)setImage:(NSString *)image
 {
-    CGFloat titleX = 0;
-    CGFloat titleY = 0;
-    CGFloat titleW = self.width * 0.7;
-    CGFloat titleH = self.height;
-    return CGRectMake(titleX, titleY, titleW, titleH);
+    _image = image;
+    [self setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
 }
 
-- (CGRect)imageRectForContentRect:(CGRect)contentRect
+- (void)setText:(NSString *)text
 {
-    CGFloat imageX = self.width * 0.7;
-    CGFloat imageY = 0;
-    CGFloat imageW = self.width * 0.3;
-    CGFloat imageH = self.height;
-    return CGRectMake(imageX, imageY, imageW, imageH);
+    _text = text;
+    [self setTitle:text forState:UIControlStateNormal];
 }
-
 @end

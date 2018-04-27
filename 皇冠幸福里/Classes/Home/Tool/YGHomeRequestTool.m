@@ -71,14 +71,14 @@ static id _instance;
     dispatch_group_notify(requestGroup, dispatch_get_main_queue(), ^{
         YGHomeFrame *starFrame = [[YGHomeFrame alloc] init];
         YGHomeProduct *starProduct = [[YGHomeProduct alloc] init];
-        starFrame.homeProduct = starProduct;
-        
         starProduct.bannerTextEn = @"Star Product";
         starProduct.bannerTextChs = @"明星产品";
         starProduct.bottomBtnImage = @"换一换";
-        
         starProduct.adsImages = adsImagesArray;
         starProduct.gridProducts = productArray;
+        
+        starFrame.homeProduct = starProduct;
+        
         [self.homeFrameArray addObject:starFrame];
         refreshUI();
     });
