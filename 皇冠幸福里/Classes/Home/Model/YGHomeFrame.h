@@ -14,6 +14,7 @@
 @property (nonatomic, strong) YGHomeProduct *homeProduct;
 @property (nonatomic, assign) CGRect adsFrame;
 @property (nonatomic, assign) CGRect bannerFrame;
+@property (nonatomic, assign) CGRect rollFrame;
 @property (nonatomic, assign) CGRect gridFrame;
 @property (nonatomic, assign) CGRect rowFrame;
 @property (nonatomic, assign) CGRect mapFrame;

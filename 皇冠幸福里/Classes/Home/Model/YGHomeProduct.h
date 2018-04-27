@@ -12,11 +12,12 @@
 
 @interface YGHomeProduct : NSObject
 @property (nonatomic, strong) NSArray *adsImages;
-@property (nonatomic, copy) NSString *bannerTitleEn;
-@property (nonatomic, copy) NSString *bannerTitleChs;
+@property (nonatomic, copy) NSString *bannerTextEn;
+@property (nonatomic, copy) NSString *bannerTextChs;
+@property (nonatomic, strong) NSArray *rollImages;
 @property (nonatomic, strong) NSArray *gridProducts;
 @property (nonatomic, strong) NSArray *rowProducts;
-@property (nonatomic, strong) NSArray *rollProducts;
 @property (nonatomic, assign, getter=hasMap) BOOL map;
 @property (nonatomic, copy) NSString *bottomBtnImage;
+@property (nonatomic, copy) NSString *bottomBtnText;
 @end

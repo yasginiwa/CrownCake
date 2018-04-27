@@ -17,9 +17,9 @@
     _homeProduct = homeProduct;
     
     // 计算广告轮播的Frame
-    if (self.homeProduct.adsImages.count) {
+    if (homeProduct.adsImages.count) {
         CGFloat adsX = 0;
-        CGFloat adsY = 0;
+        CGFloat adsY = kHomeCellMargin;
         CGFloat adsW = kScreenW;
         CGFloat adsH = 200;
         self.adsFrame = CGRectMake(adsX, adsY, adsW, adsH);
@@ -29,20 +29,30 @@
     }
     
     // 计算banner的Frame
-    if (self.homeProduct.bannerTitleEn.length) {
+    if (homeProduct.bannerTextEn.length) {
         CGFloat bannerX = 0;
-        CGFloat bannerY = CGRectGetMaxY(self.adsFrame);
+        CGFloat bannerY = CGRectGetMaxY(self.adsFrame) + kHomeCellMargin;
         CGFloat bannerW = kScreenW;
-        CGFloat bannerH = 100;
+        CGFloat bannerH = 110;
         self.bannerFrame = CGRectMake(bannerX, bannerY, bannerW, bannerH);
     } else {
         self.bannerFrame = CGRectZero;
     }
     
+    if (homeProduct.rollImages.count) {
+        CGFloat rollX = 0;
+        CGFloat rollY = CGRectGetMaxY(self.bannerFrame) + kHomeCellMargin;
+        CGFloat rollW = kScreenW;
+        CGFloat rollH = 200;
+        self.rollFrame = CGRectMake(rollX, rollY, rollW, rollH);
+    } else {
+        self.rollFrame = CGRectZero;
+    }
+    
     // 计算网格产品展示的frame
-    if (self.homeProduct.gridProducts.count) {
+    if (homeProduct.gridProducts.count) {
         CGFloat gridX = 0;
-        CGFloat gridY = CGRectGetMaxY(self.bannerFrame);
+        CGFloat gridY = CGRectGetMaxY(self.bannerFrame) + kHomeCellMargin;
         CGFloat gridW = kScreenW;
         CGFloat gridH = 500;
         self.gridFrame = CGRectMake(gridX, gridY, gridW, gridH);
@@ -51,7 +61,7 @@
     }
     
     // 计算横排产品展示的frame
-    if (self.homeProduct.rowProducts.count) {
+    if (homeProduct.rowProducts.count) {
         CGFloat rowX = 0;
         CGFloat rowY = CGRectGetMaxY(self.gridFrame);
         CGFloat rowW = kScreenW;
@@ -62,7 +72,7 @@
     }
     
     // 计算map 地图的frame
-    if (self.homeProduct.hasMap) {
+    if (homeProduct.hasMap) {
         CGFloat mapX = 0;
         CGFloat mapY = CGRectGetMaxY(self.rowFrame);
         CGFloat mapW = kScreenW;
@@ -74,7 +84,7 @@
     }
     
     // 计算底部按钮的frame
-    if (self.homeProduct.bottomBtnImage.length) {
+    if (homeProduct.bottomBtnImage.length) {
         CGFloat bottomBtnX = 0;
         CGFloat bottomBtnY = CGRectGetMaxY(self.mapFrame);
         CGFloat bottomBtnW = kScreenW;

@@ -49,6 +49,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
     // 设置logoView的frame
     self.logoView.x = 0;
     self.logoView.y = 0;

@@ -22,7 +22,8 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = YGColorWithRGBA(240, 240, 240, 1.0);
         
-        UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loadingBg"]];
+        UIImageView *logoView = [[UIImageView alloc] init];
+        logoView.image = [UIImage imageNamed:@"loadingBg"];
         [self addSubview:logoView];
         self.logoView = logoView;
         
@@ -39,16 +40,16 @@
     [super layoutSubviews];
     
     CGFloat padding = 8;
-    CGFloat delta = self.logoView.width + self.waitingIndicator.width + padding;
     
-    self.logoView.x = (kScreenW - delta) * 0.5;
-    self.logoView.centerY = kScreenH * 0.5 + 15;
-    NSLog(@"%@", NSStringFromCGRect(self.logoView.frame));
-    
-    self.waitingIndicator.x = CGRectGetMaxX(self.logoView.frame) + padding;
+    self.waitingIndicator.width = 25;
+    self.waitingIndicator.height = 25;
+    self.waitingIndicator.x = kScreenW * 0.5 - self.waitingIndicator.width - padding - self.waitingIndicator.width;
     self.waitingIndicator.centerY = kScreenH * 0.5;
-    self.waitingIndicator.width = 30;
-    self.waitingIndicator.height = 30;
+
+    self.logoView.x = CGRectGetMaxX(self.waitingIndicator.frame) + padding;
+    self.logoView.centerY = kScreenH * 0.5 - 15;
+    self.logoView.width = 97;
+    self.logoView.height = 30;
 }
 
 @end

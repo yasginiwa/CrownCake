@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YGBottomBtn : UIButton
-
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic, copy) NSString *image;
 @end

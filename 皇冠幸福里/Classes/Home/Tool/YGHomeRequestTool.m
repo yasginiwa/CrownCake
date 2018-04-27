@@ -1,0 +1,88 @@
+//
+//  YGHomeRequestTool.m
+//  皇冠幸福里
+//
+//  Created by LiYugang on 2018/4/27.
+//  Copyright © 2018年 LiYugang. All rights reserved.
+//
+
+#import "YGHomeRequestTool.h"
+#import "YGProductsRequest.h"
+#import "YGProduct.h"
+#import "YGHomeFrame.h"
+#import "YGHomeProduct.h"
+
+@implementation YGHomeRequestTool
+
+static id _instance;
++ (instancetype)allocWithZone:(struct _NSZone *)zone
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _instance = [super allocWithZone:zone];
+    });
+    return _instance;
+}
+
++ (instancetype)sharedHomeRequest
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _instance = [[self alloc] init];
+    });
+    return _instance;
+}
+
+- (NSMutableArray *)homeFrameArray
+{
+    if (_homeFrameArray == nil) {
+        _homeFrameArray = [NSMutableArray array];
+    }
+    return _homeFrameArray;
+}
+
+- (void)startAllHomeRequest:(void(^)(void))refreshUI
+{
+    dispatch_group_t requestGroup = dispatch_group_create();
+    
+    dispatch_group_enter(requestGroup);
+    NSDictionary *adsParam = @{@"groupId" : @"1"};
+    __block NSMutableArray *adsImagesArray = [NSMutableArray array];
+    [YGProductsRequest getProductWithParams:adsParam success:^(id result) {
+        NSArray *adsProducts = [YGProduct mj_objectArrayWithKeyValuesArray:result];
+        for (YGProduct *product in adsProducts) {
+            [adsImagesArray addObject:product.productImg];
+        }
+        dispatch_group_leave(requestGroup);
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    
+    dispatch_group_enter(requestGroup);
+    NSDictionary *starParam = @{@"groupId" : @"3"};
+    __block NSArray *productArray;
+    [YGProductsRequest getProductWithParams:starParam success:^(id result) {
+        productArray = [YGProduct mj_objectArrayWithKeyValuesArray:result];
+        dispatch_group_leave(requestGroup);
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    
+    dispatch_group_notify(requestGroup, dispatch_get_main_queue(), ^{
+        YGHomeFrame *starFrame = [[YGHomeFrame alloc] init];
+        YGHomeProduct *starProduct = [[YGHomeProduct alloc] init];
+        starFrame.homeProduct = starProduct;
+        
+        starProduct.bannerTextEn = @"Star Product";
+        starProduct.bannerTextChs = @"明星产品";
+        starProduct.bottomBtnImage = @"换一换";
+        
+        starProduct.adsImages = adsImagesArray;
+        starProduct.gridProducts = productArray;
+        [self.homeFrameArray addObject:starFrame];
+        refreshUI();
+    });
+}
+
+
+@end

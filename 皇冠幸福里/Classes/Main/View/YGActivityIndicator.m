@@ -18,7 +18,8 @@
 - (UIImageView *)activityIndicator
 {
     if (_activityIndicator == nil) {
-        _activityIndicator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading"]];
+        _activityIndicator = [[UIImageView alloc] init];
+        _activityIndicator.image = [UIImage imageNamed:@"loading"];
         self.backgroundColor = [UIColor clearColor];
         [self addSubview:_activityIndicator];
     }
@@ -44,7 +45,7 @@
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     anim.fromValue = [NSNumber numberWithFloat:.0f];
     anim.toValue = [NSNumber numberWithFloat:M_PI * 2];
-    anim.duration = 1.f;
+    anim.duration = .6f;
     anim.autoreverses = NO;
     anim.fillMode = kCAFillModeForwards;
     anim.repeatCount = MAXFLOAT;
@@ -64,5 +65,4 @@
     [super layoutSubviews];
     self.activityIndicator.frame = self.bounds;
 }
-
 @end
