@@ -8,6 +8,7 @@
 
 #import "YGGridView.h"
 #import "YGProduct.h"
+#import "YGHomeFrame.h"
 
 @interface YGGridButton : UIButton
 
@@ -44,15 +45,13 @@
 }
 @end
 
-#define maxCol 2
-#define maxCount 4
-#define margin 20
+
 
 @implementation YGGridView
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        for (int i = 0; i < maxCount; i++) {
+        for (int i = 0; i < gridMaxCount; i++) {
             YGGridButton *gridBtn = [YGGridButton buttonWithType:UIButtonTypeCustom];
             gridBtn.tag = i;
             [self addSubview:gridBtn];
@@ -65,7 +64,7 @@
 {
     NSArray *randomProducts = [NSArray randomArrayWithArray:products];
     
-    for (int i = 0; i < maxCount; i++) {
+    for (int i = 0; i < gridMaxCount; i++) {
         YGGridButton *gridBtn = self.subviews[i];
         YGProduct *product = randomProducts[i];
         [gridBtn setTitle:product.productName forState:UIControlStateNormal];
@@ -78,25 +77,22 @@
 {
     [super layoutSubviews];
     
-    CGFloat gridBtnW = (kScreenW - (maxCol + 1) *margin) / maxCol;
-    CGFloat gridBtnH = gridBtnW + margin;
-    for (int i = 0; i < maxCount; i++) {
+    CGFloat gridBtnW = (kScreenW - (gridMaxCol + 1) * gridColmargin) / gridMaxCol;
+    CGFloat gridBtnH = gridBtnW + gridColmargin;
+    for (int i = 0; i < gridMaxCount; i++) {
         YGGridButton *gridBtn = self.subviews[i];
         [gridBtn addTarget:self action:@selector(clickGridBtn:) forControlEvents:UIControlEventTouchDown];
-        int col = i % maxCol;
-        int row = i / maxCol;
+        int col = i % gridMaxCol;
+        int row = i / gridMaxCol;
         CGFloat gridBtnY;
         if (row == 0) {
-            gridBtnY = 10 + (margin + gridBtnH) * row;
+            gridBtnY = gridRowMargin + (gridColmargin + gridBtnH) * row;
         } else {
-            gridBtnY = margin + (margin + gridBtnH) * row;
+            gridBtnY = gridColmargin + (gridColmargin + gridBtnH) * row;
         }
-        CGFloat gridBtnX = margin + (margin + gridBtnW) * col;
+        CGFloat gridBtnX = gridColmargin + (gridColmargin + gridBtnW) * col;
         gridBtn.frame = CGRectMake(gridBtnX, gridBtnY, gridBtnW, gridBtnH);
     }
-    YGGridButton *lastBtn = [self.subviews lastObject];
-    self.width = kScreenW;
-    self.height = CGRectGetMaxY(lastBtn.frame) + 10;
 }
 
 - (void)clickGridBtn:(YGGridButton *)btn

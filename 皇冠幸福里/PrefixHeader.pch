@@ -27,7 +27,13 @@
 #define accessTokenFilePath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"accessToken.data"]
 
 #define kHomeCellMargin 30
+#define YGGridHeightCalcFinishNote @"gridHeightCalcFinishNote"
+#define YGRowHeightCalsFinishNote @"rowHeightCalcFinishNote"
 
+#define gridMaxCol 2
+#define gridMaxCount 4
+#define gridColmargin 20
+#define gridRowMargin 10
 
 // 登录
 #define kScanError  @"请选择正确的条形码，一条一条的那种，不是二维码！"

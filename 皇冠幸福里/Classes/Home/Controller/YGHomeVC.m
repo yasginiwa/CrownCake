@@ -37,6 +37,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self setAppearance];
+    
     [self setTitleView];
     
     [self setloadingView];
@@ -46,6 +48,11 @@
         self.homeFrames = [YGHomeRequestTool sharedHomeRequest].homeFrameArray;
         [self.tableView reloadData];
     }];
+}
+
+- (void)setAppearance
+{
+    self.tableView.backgroundColor = YGColorWithRGBA(240, 240, 240, 1.0);
 }
 
 - (void)setTitleView
@@ -82,8 +89,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    YGHomeFrame *homeFrame = self.homeFrames[indexPath.row];
-//    return homeFrame.cellHeight;
-    return 1000;
+    YGHomeFrame *homeFrame = self.homeFrames[indexPath.row];
+    return homeFrame.cellHeight;
 }
 @end

@@ -8,8 +8,6 @@
 
 #import "YGHomeFrame.h"
 #import "YGHomeProduct.h"
-#import "YGGridView.h"
-#import "YGRowView.h"
 
 @implementation YGHomeFrame
 - (void)setHomeProduct:(YGHomeProduct *)homeProduct
@@ -54,7 +52,9 @@
         CGFloat gridX = 0;
         CGFloat gridY = CGRectGetMaxY(self.bannerFrame);
         CGFloat gridW = kScreenW;
-        CGFloat gridH = 444;
+        CGFloat gridBtnW = (kScreenW - (gridMaxCol + 1) * gridRowMargin) / gridMaxCol;
+        CGFloat gridBtnH = gridBtnW + gridColmargin;
+        CGFloat gridH = (gridMaxCount / gridMaxCol) * (gridBtnH + gridRowMargin) + gridColmargin;
         self.gridFrame = CGRectMake(gridX, gridY, gridW, gridH);
     } else {
         self.gridFrame = CGRectZero;

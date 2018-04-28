@@ -24,6 +24,7 @@
 @property (nonatomic, weak) YGRowView *rowView;
 @property (nonatomic, weak) YGBottomBtn *bottomBtn;
 @property (nonatomic, weak) YGMapView *mapView;
+@property (nonatomic, assign) CGFloat gridHeight;
 @end
 
 @implementation YGHomeCell
@@ -68,6 +69,8 @@
         YGMapView *mapView = [[YGMapView alloc] init];
         [self.contentView addSubview:mapView];
         self.mapView = mapView;
+        
+
     }
     return self;
 }
@@ -79,7 +82,9 @@
     [self setFrames];
     
     [self setData];
+    
 }
+
 
 - (void)setFrames
 {
