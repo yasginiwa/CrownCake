@@ -33,10 +33,10 @@
 //    CGFloat titleY;
 //    CGFloat titleW;
 //    CGFloat titleH;
-//    if (self.text.length) {
+//    if (self.text.length && self.image) {
 //        titleX = 0;
 //        titleY = 0;
-//        titleW = self.width * 0.7;
+//        titleW = self.width * 0.6;
 //        titleH = self.height;
 //        return CGRectMake(titleX, titleY, titleW, titleH);
 //    } else {
@@ -52,15 +52,15 @@
 //    CGFloat imageW;
 //    CGFloat imageH;
 //
-//    if (self.text.length) {
-//        imageX = self.width * 0.7;
+//    if (self.text.length && self.image) {
+//        imageX = self.width * 0.6;
 //        imageY = 0;
-//        imageW = self.width * 0.3;
+//        imageW = self.width * 0.4;
 //        imageH = self.height;
 //    } else {
 //        imageX = 0;
 //        imageY = 0;
-//        imageW = self.width;
+//        imageW = self.width * 0.7;
 //        imageH = self.height;
 //    }
 //    return CGRectMake(imageX, imageY, imageW, imageH);

@@ -68,7 +68,18 @@ static id _instance;
         NSLog(@"%@", error);
     }];
     
+    dispatch_group_enter(requestGroup);
+    NSDictionary *storyParam = @{@"groupId" : @"2"};
+    __block NSArray *storyArray;
+    [YGProductsRequest getProductWithParams:storyParam success:^(id result) {
+        storyArray = [YGProduct mj_objectArrayWithKeyValuesArray:result];
+        dispatch_group_leave(requestGroup);
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    
     dispatch_group_notify(requestGroup, dispatch_get_main_queue(), ^{
+        // 获取明星产品
         YGHomeFrame *starFrame = [[YGHomeFrame alloc] init];
         YGHomeProduct *starProduct = [[YGHomeProduct alloc] init];
         starProduct.bannerTextEn = @"Star Product";
@@ -76,10 +87,18 @@ static id _instance;
         starProduct.bottomBtnImage = @"换一换";
         starProduct.adsImages = adsImagesArray;
         starProduct.gridProducts = productArray;
-        
         starFrame.homeProduct = starProduct;
-        
         [self.homeFrameArray addObject:starFrame];
+        
+        // 获取故事产品
+        YGHomeFrame *storyFrame = [[YGHomeFrame alloc] init];
+        YGHomeProduct *storyProduct = [[YGHomeProduct alloc] init];
+        storyProduct.bannerTextEn = @"CrownCake Story";
+        storyProduct.bannerTextChs = @"皇冠故事";
+        storyProduct.bottomBtnText = @"查看更多 >";
+        storyProduct.rowProducts = storyArray;
+        storyFrame.homeProduct = storyProduct;
+        [self.homeFrameArray addObject:storyFrame];
         refreshUI();
     });
 }

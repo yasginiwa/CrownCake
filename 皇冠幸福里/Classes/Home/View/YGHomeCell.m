@@ -59,7 +59,7 @@
         self.gridView = gridView;
         
         YGRowView *rowView = [[YGRowView alloc] init];
-        [self.contentView addSubview:rollView];
+        [self.contentView addSubview:rowView];
         self.rowView = rowView;
         
         YGBottomBtn *bottomBtn = [YGBottomBtn buttonWithType:UIButtonTypeCustom];
@@ -69,24 +69,26 @@
         YGMapView *mapView = [[YGMapView alloc] init];
         [self.contentView addSubview:mapView];
         self.mapView = mapView;
-        
-
     }
     return self;
+}
+
+- (void)setFrame:(CGRect)frame{
+    frame.size.height -= 10;
+    [super setFrame:frame];
 }
 
 - (void)setHomeFrame:(YGHomeFrame *)homeFrame
 {
     _homeFrame = homeFrame;
     
-    [self setFrames];
+    [self setFrame];
     
     [self setData];
-    
 }
 
 
-- (void)setFrames
+- (void)setFrame
 {
     self.adsView.frame = self.homeFrame.adsFrame;
     
@@ -107,18 +109,43 @@
 {
     YGHomeProduct *homeProduct = self.homeFrame.homeProduct;
 
-    self.adsView.imageArray = homeProduct.adsImages;
+    if (homeProduct.adsImages.count) {
+        self.adsView.hidden = NO;
+        self.adsView.imageArray = homeProduct.adsImages;
+    } else {
+        self.adsView.hidden = YES;
+    }
 
     self.bannerView.textEn = homeProduct.bannerTextEn;
     self.bannerView.textChs = homeProduct.bannerTextChs;
 
-    self.rollView.imageArray = homeProduct.rollImages;
+    if (homeProduct.rollImages.count) {
+        self.rollView.hidden = NO;
+        self.rollView.imageArray = homeProduct.rollImages;
+    } else {
+        self.rollView.hidden = YES;
+    }
 
-    self.gridView.products = homeProduct.gridProducts;
+    if (homeProduct.gridProducts.count) {
+        self.gridView.hidden = NO;
+        self.gridView.products = homeProduct.gridProducts;
+    } else {
+        self.gridView.hidden = YES;
+    }
+
+    if (homeProduct.rowProducts.count) {
+        self.rowView.hidden = NO;
+        self.rowView.products = homeProduct.rowProducts;
+    } else {
+        self.rowView.hidden = YES;
+    }
     
-    self.rowView.products = homeProduct.rowProducts;
-
-    self.bottomBtn.image = homeProduct.bottomBtnImage;
-    self.bottomBtn.text = homeProduct.bottomBtnText;
+//    if (homeProduct.bottomBtnText.length || homeProduct.bottomBtnText.length) {
+//        self.bottomBtn.hidden = NO;
+        self.bottomBtn.image = homeProduct.bottomBtnImage;
+        self.bottomBtn.text = homeProduct.bottomBtnText;
+//    } else {
+//        self.bottomBtn.hidden = YES;
+//    }
 }
 @end

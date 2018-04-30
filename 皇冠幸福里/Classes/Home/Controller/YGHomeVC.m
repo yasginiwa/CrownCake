@@ -19,14 +19,14 @@
 #define YGStarProductRequestFinishNote @"YGStarProductRequestFinishNote"
 
 @interface YGHomeVC ()
-@property (nonatomic, strong) NSArray *homeFrames;
+@property (nonatomic, strong) NSMutableArray *homeFrames;
 @property (nonatomic, weak) UIView *loadingView;
 @end
 
 @implementation YGHomeVC
 
 #pragma mark - 懒加载
-- (NSArray *)homeFrames
+- (NSMutableArray *)homeFrames
 {
     if (_homeFrames == nil) {
         _homeFrames = [NSMutableArray array];
@@ -53,6 +53,8 @@
 - (void)setAppearance
 {
     self.tableView.backgroundColor = YGColorWithRGBA(240, 240, 240, 1.0);
+    self.tableView.allowsSelection = NO;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)setTitleView

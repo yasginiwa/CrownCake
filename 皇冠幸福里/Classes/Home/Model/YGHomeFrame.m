@@ -21,7 +21,6 @@
         CGFloat adsW = kScreenW;
         CGFloat adsH = 200;
         self.adsFrame = CGRectMake(adsX, adsY, adsW, adsH);
-        self.cellHeight = CGRectGetMaxY(self.adsFrame);
     } else {
         self.adsFrame = CGRectZero;
     }
@@ -29,7 +28,7 @@
     // 计算banner的Frame
     if (homeProduct.bannerTextEn.length) {
         CGFloat bannerX = 0;
-        CGFloat bannerY = CGRectGetMaxY(self.adsFrame) + kHomeCellMargin;
+        CGFloat bannerY = CGRectGetMaxY(self.adsFrame) + 10;
         CGFloat bannerW = kScreenW;
         CGFloat bannerH = 110;
         self.bannerFrame = CGRectMake(bannerX, bannerY, bannerW, bannerH);
@@ -43,6 +42,7 @@
         CGFloat rollW = kScreenW;
         CGFloat rollH = 200;
         self.rollFrame = CGRectMake(rollX, rollY, rollW, rollH);
+        self.cellHeight = CGRectGetMaxY(self.rollFrame);
     } else {
         self.rollFrame = CGRectZero;
     }
@@ -54,7 +54,7 @@
         CGFloat gridW = kScreenW;
         CGFloat gridBtnW = (kScreenW - (gridMaxCol + 1) * gridRowMargin) / gridMaxCol;
         CGFloat gridBtnH = gridBtnW + gridColmargin;
-        CGFloat gridH = (gridMaxCount / gridMaxCol) * (gridBtnH + gridRowMargin) + gridColmargin;
+        CGFloat gridH = (gridMaxCount / gridMaxCol) * (gridBtnH + gridRowMargin);
         self.gridFrame = CGRectMake(gridX, gridY, gridW, gridH);
     } else {
         self.gridFrame = CGRectZero;
@@ -63,9 +63,9 @@
     // 计算横排产品展示的frame
     if (homeProduct.rowProducts.count) {
         CGFloat rowX = 0;
-        CGFloat rowY = CGRectGetMaxY(self.gridFrame);
+        CGFloat rowY = CGRectGetMaxY(self.bannerFrame);
         CGFloat rowW = kScreenW;
-        CGFloat rowH = 0;
+        CGFloat rowH = 210 * rowMaxCount;
         self.rowFrame = CGRectMake(rowX, rowY, rowW, rowH);
     } else {
         self.rowFrame = CGRectZero;
@@ -84,18 +84,19 @@
     }
     
     // 计算底部按钮的frame
-    if (homeProduct.bottomBtnImage.length) {
+    if (homeProduct.bottomBtnImage.length || homeProduct.bottomBtnText.length) {
         CGFloat bottomBtnX = 0;
         CGFloat bottomBtnY;
         if (homeProduct.gridProducts.count) {
             bottomBtnY = CGRectGetMaxY(self.gridFrame);
-        } else {
+        } else if (homeProduct.rowProducts.count) {
             bottomBtnY = CGRectGetMaxY(self.rowFrame);
-        }
+        }  else return;
+        
         CGFloat bottomBtnW = kScreenW;
         CGFloat bottomBtnH = 50;
         self.bottomBtnFrame = CGRectMake(bottomBtnX, bottomBtnY, bottomBtnW, bottomBtnH);
-        self.cellHeight = CGRectGetMaxY(self.bottomBtnFrame);
+        self.cellHeight = CGRectGetMaxY(self.bottomBtnFrame) + 10;
     } else {
         self.bottomBtnFrame = CGRectZero;
     }

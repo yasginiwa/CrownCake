@@ -162,7 +162,6 @@
 		736F0EE9208EF38A00EB702E /* YGHomeProduct.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGHomeProduct.m; sourceTree = "<group>"; };
 		736F0EEE208F1B5E00EB702E /* YGHomeFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGHomeFrame.h; sourceTree = "<group>"; };
 		736F0EEF208F1B5E00EB702E /* YGHomeFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGHomeFrame.m; sourceTree = "<group>"; };
-		B62BD609209093C4003FAEFE /* loadingViewBg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadingViewBg@3x.png"; sourceTree = "<group>"; };
 		B6375729208E24F9008A6EA1 /* NSArray+RandomObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+RandomObj.h"; sourceTree = "<group>"; };
 		B637572A208E24F9008A6EA1 /* NSArray+RandomObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+RandomObj.m"; sourceTree = "<group>"; };
 		B637572B208E24F9008A6EA1 /* UIButton+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extension.h"; sourceTree = "<group>"; };
@@ -364,7 +363,6 @@
 				733A25BD208DC39D00D9D001 /* AppDelegate.m */,
 				733A25C2208DC39D00D9D001 /* Main.storyboard */,
 				733A25C5208DC39D00D9D001 /* Assets.xcassets */,
-				B62BD609209093C4003FAEFE /* loadingViewBg@3x.png */,
 				733A25C7208DC39D00D9D001 /* LaunchScreen.storyboard */,
 				733A25CA208DC39D00D9D001 /* Info.plist */,
 				733A25CB208DC39D00D9D001 /* main.m */,

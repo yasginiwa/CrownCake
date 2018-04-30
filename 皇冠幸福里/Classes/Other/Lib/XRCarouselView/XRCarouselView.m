@@ -8,7 +8,7 @@
 #import "XRCarouselView.h"
 #import <ImageIO/ImageIO.h>
 
-#define DEFAULTTIME 5
+#define DEFAULTTIME 3
 #define HORMARGIN 10
 #define VERMARGIN 5
 #define DES_LABEL_H 20

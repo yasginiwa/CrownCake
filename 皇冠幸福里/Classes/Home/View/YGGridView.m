@@ -62,6 +62,7 @@
 
 - (void)setProducts:(NSArray *)products
 {
+    _products = products;
     NSArray *randomProducts = [NSArray randomArrayWithArray:products];
     
     for (int i = 0; i < gridMaxCount; i++) {
