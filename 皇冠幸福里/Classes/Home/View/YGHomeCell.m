@@ -87,7 +87,6 @@
     [self setData];
 }
 
-
 - (void)setFrame
 {
     self.adsView.frame = self.homeFrame.adsFrame;
@@ -116,8 +115,13 @@
         self.adsView.hidden = YES;
     }
 
-    self.bannerView.textEn = homeProduct.bannerTextEn;
-    self.bannerView.textChs = homeProduct.bannerTextChs;
+    if (homeProduct.bannerTextEn || homeProduct.bannerTextChs) {
+        self.bannerView.hidden = NO;
+        self.bannerView.textEn = homeProduct.bannerTextEn;
+        self.bannerView.textChs = homeProduct.bannerTextChs;
+    } else {
+        self.bannerView.hidden = YES;
+    }
 
     if (homeProduct.rollImages.count) {
         self.rollView.hidden = NO;
@@ -140,12 +144,15 @@
         self.rowView.hidden = YES;
     }
     
-//    if (homeProduct.bottomBtnText.length || homeProduct.bottomBtnText.length) {
-//        self.bottomBtn.hidden = NO;
-        self.bottomBtn.image = homeProduct.bottomBtnImage;
+    if (homeProduct.bottomBtnText.length) {
+        self.bottomBtn.hidden = NO;
         self.bottomBtn.text = homeProduct.bottomBtnText;
-//    } else {
-//        self.bottomBtn.hidden = YES;
-//    }
+        
+    } else if (homeProduct.bottomBtnImage.length){
+        self.bottomBtn.image = homeProduct.bottomBtnImage;
+        
+    } else {
+        self.bottomBtn.hidden = YES;
+    }
 }
 @end

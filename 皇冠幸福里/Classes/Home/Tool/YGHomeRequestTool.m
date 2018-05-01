@@ -11,10 +11,13 @@
 #import "YGProduct.h"
 #import "YGHomeFrame.h"
 #import "YGHomeProduct.h"
+#import "FMDB.h"
 
 @implementation YGHomeRequestTool
 
 static id _instance;
+static NSString *_path;
+
 + (instancetype)allocWithZone:(struct _NSZone *)zone
 {
     static dispatch_once_t onceToken;
@@ -32,6 +35,8 @@ static id _instance;
     });
     return _instance;
 }
+
+
 
 - (NSMutableArray *)homeFrameArray
 {
@@ -99,6 +104,9 @@ static id _instance;
         storyProduct.rowProducts = storyArray;
         storyFrame.homeProduct = storyProduct;
         [self.homeFrameArray addObject:storyFrame];
+        
+        
+        
         refreshUI();
     });
 }

@@ -27,45 +27,6 @@
     
 }
 
-//- (CGRect)titleRectForContentRect:(CGRect)contentRect
-//{
-//    CGFloat titleX;
-//    CGFloat titleY;
-//    CGFloat titleW;
-//    CGFloat titleH;
-//    if (self.text.length && self.image) {
-//        titleX = 0;
-//        titleY = 0;
-//        titleW = self.width * 0.6;
-//        titleH = self.height;
-//        return CGRectMake(titleX, titleY, titleW, titleH);
-//    } else {
-//        return CGRectZero;
-//    }
-//
-//}
-//
-//- (CGRect)imageRectForContentRect:(CGRect)contentRect
-//{
-//    CGFloat imageX;
-//    CGFloat imageY;
-//    CGFloat imageW;
-//    CGFloat imageH;
-//
-//    if (self.text.length && self.image) {
-//        imageX = self.width * 0.6;
-//        imageY = 0;
-//        imageW = self.width * 0.4;
-//        imageH = self.height;
-//    } else {
-//        imageX = 0;
-//        imageY = 0;
-//        imageW = self.width * 0.7;
-//        imageH = self.height;
-//    }
-//    return CGRectMake(imageX, imageY, imageW, imageH);
-//}
-
 - (void)setImage:(NSString *)image
 {
     _image = image;

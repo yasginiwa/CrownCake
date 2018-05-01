@@ -14,7 +14,20 @@
 
 @end
 
+static NSString *_path;
+
 @implementation YGGridButton
+
++ (void)initialize
+{
+    _path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"YGGridBtn"];
+    BOOL isDir = NO;
+    BOOL isExsists = [[NSFileManager defaultManager] fileExistsAtPath:_path isDirectory:&isDir];
+    if (!isExsists || !isDir) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:_path withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
@@ -43,6 +56,32 @@
     CGFloat titleH = self.height - self.imageView.height + 20;
     return CGRectMake(titleX, titleY, titleW, titleH);
 }
+
+- (void)setButtonImageWithUrl:(NSString *)urlStr placeHolder:(NSString *)placeHolder {
+    
+    NSURL *url = [NSURL URLWithString:urlStr];
+    [self setImage:[UIImage imageNamed:placeHolder] forState:UIControlStateNormal];
+    NSString *imageName = [urlStr stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    NSString *imagePath = [_path stringByAppendingPathComponent:imageName];
+
+    NSData *data = [NSData dataWithContentsOfFile:imagePath];
+    if (data) {
+        UIImage *image = [UIImage imageWithData:data];
+        [self setImage:image forState:UIControlStateNormal];
+    } else {
+        NSBlockOperation *downloadImage = [NSBlockOperation blockOperationWithBlock:^{
+            NSData *downloadData = [NSData dataWithContentsOfURL:url];
+            [downloadData writeToFile:imagePath atomically:YES];
+            UIImage *downloadImage = [UIImage imageWithData:downloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setImage:downloadImage forState:UIControlStateNormal];
+            });
+        }];
+        
+        NSOperationQueue *asynQueue = [[NSOperationQueue alloc] init];
+        [asynQueue addOperation:downloadImage];
+    }
+}
 @end
 
 
@@ -63,14 +102,13 @@
 - (void)setProducts:(NSArray *)products
 {
     _products = products;
-    NSArray *randomProducts = [NSArray randomArrayWithArray:products];
+    NSArray *firstProducts = [products subarrayWithRange:NSMakeRange(0, gridMaxCount)];
     
     for (int i = 0; i < gridMaxCount; i++) {
         YGGridButton *gridBtn = self.subviews[i];
-        YGProduct *product = randomProducts[i];
+        YGProduct *product = firstProducts[i];
         [gridBtn setTitle:product.productName forState:UIControlStateNormal];
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:product.productImg]]];
-        [gridBtn setImage:image forState:UIControlStateNormal];
+        [gridBtn setButtonImageWithUrl:product.productImg placeHolder:@"logo_banner_gray"];
     }
 }
 

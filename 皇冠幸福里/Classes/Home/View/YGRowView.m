@@ -78,7 +78,7 @@
     [self.detailBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(-20);
         make.top.equalTo(self).offset(155);
-        make.width.equalTo(@(70));
+        make.width.equalTo(@(66));
         make.height.equalTo(@(30));
     }];
 }
@@ -129,14 +129,13 @@
 - (void)setProducts:(NSArray *)products
 {
     _products = products;
-    
     NSArray *rowProducts = [products subarrayWithRange:NSMakeRange(0, rowMaxCount)];
     
     for (int i = 0; i < rowMaxCount; i++) {
         YGProduct *rowProduct = rowProducts[i];
         YGStoryView *storyView = self.subviews[i];
         NSURL *imgUrl = [NSURL URLWithString:rowProduct.productImg];
-        UIImage *phImg = [UIImage imageNamed:@"happiness_gray"];
+        UIImage *phImg = [UIImage imageNamed:@"logo_banner_gray"];
         [storyView.picView sd_setImageWithURL:imgUrl placeholderImage:phImg];
         storyView.titleLabel.text = rowProduct.productName;
         storyView.detailLabel.text = rowProduct.summary;
