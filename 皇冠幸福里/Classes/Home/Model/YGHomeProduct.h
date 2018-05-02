@@ -10,7 +10,7 @@
 
 @class YGProduct;
 
-@interface YGHomeProduct : NSObject
+@interface YGHomeProduct : NSObject <NSCoding>
 @property (nonatomic, strong) NSArray *adsImages;
 @property (nonatomic, copy) NSString *bannerTextEn;
 @property (nonatomic, copy) NSString *bannerTextChs;

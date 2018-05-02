@@ -105,6 +105,7 @@
 		B6375807208E24F9008A6EA1 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B63757BE208E24F9008A6EA1 /* SVRadialGradientLayer.m */; };
 		B6375808208E24F9008A6EA1 /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = B63757C1208E24F9008A6EA1 /* XRCarouselView.m */; };
 		B6375809208E24F9008A6EA1 /* XRPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = B63757C2208E24F9008A6EA1 /* XRPlaceholder.png */; };
+		B69F71A02098A4F4000D9F26 /* YGDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B69F719F2098A4F4000D9F26 /* YGDBTool.m */; };
 		B6B9C52D209801F000C3F7C0 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B9C522209801F000C3F7C0 /* FMDatabase.m */; };
 		B6B9C52E209801F000C3F7C0 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B9C524209801F000C3F7C0 /* FMDatabaseAdditions.m */; };
 		B6B9C52F209801F000C3F7C0 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B9C526209801F000C3F7C0 /* FMDatabasePool.m */; };
@@ -314,6 +315,8 @@
 		B63757C0208E24F9008A6EA1 /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
 		B63757C1208E24F9008A6EA1 /* XRCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRCarouselView.m; sourceTree = "<group>"; };
 		B63757C2208E24F9008A6EA1 /* XRPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = XRPlaceholder.png; sourceTree = "<group>"; };
+		B69F719E2098A4F4000D9F26 /* YGDBTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGDBTool.h; sourceTree = "<group>"; };
+		B69F719F2098A4F4000D9F26 /* YGDBTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGDBTool.m; sourceTree = "<group>"; };
 		B6B9C521209801F000C3F7C0 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		B6B9C522209801F000C3F7C0 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		B6B9C523209801F000C3F7C0 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -573,6 +576,8 @@
 				736F0EB8208EC19200EB702E /* YGHttpTool.m */,
 				736F0EB7208EC19200EB702E /* YGProductsRequest.h */,
 				736F0EBA208EC19200EB702E /* YGProductsRequest.m */,
+				B69F719E2098A4F4000D9F26 /* YGDBTool.h */,
+				B69F719F2098A4F4000D9F26 /* YGDBTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1045,6 +1050,7 @@
 				7366CE03209074AA009E6B76 /* YGActivityIndicator.m in Sources */,
 				736F0EEA208EF38A00EB702E /* YGHomeProduct.m in Sources */,
 				B63757E7208E24F9008A6EA1 /* NSButton+WebCache.m in Sources */,
+				B69F71A02098A4F4000D9F26 /* YGDBTool.m in Sources */,
 				B63757C8208E24F9008A6EA1 /* AFNetworkReachabilityManager.m in Sources */,
 				B63757EF208E24F9008A6EA1 /* SDWebImageCodersManager.m in Sources */,
 				B63757CF208E24F9008A6EA1 /* MASConstraint.m in Sources */,

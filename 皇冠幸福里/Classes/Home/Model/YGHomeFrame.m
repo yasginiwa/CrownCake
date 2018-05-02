@@ -10,6 +10,7 @@
 #import "YGHomeProduct.h"
 
 @implementation YGHomeFrame
+MJCodingImplementation
 - (void)setHomeProduct:(YGHomeProduct *)homeProduct
 {
     _homeProduct = homeProduct;

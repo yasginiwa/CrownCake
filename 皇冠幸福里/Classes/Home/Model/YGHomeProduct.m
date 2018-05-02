@@ -9,5 +9,5 @@
 #import "YGHomeProduct.h"
 
 @implementation YGHomeProduct
-
+MJCodingImplementation
 @end

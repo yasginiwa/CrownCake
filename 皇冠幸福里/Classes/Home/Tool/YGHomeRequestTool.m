@@ -11,7 +11,7 @@
 #import "YGProduct.h"
 #import "YGHomeFrame.h"
 #import "YGHomeProduct.h"
-#import "FMDB.h"
+#import "YGDBTool.h"
 
 @implementation YGHomeRequestTool
 
@@ -94,6 +94,7 @@ static NSString *_path;
         starProduct.gridProducts = productArray;
         starFrame.homeProduct = starProduct;
         [self.homeFrameArray addObject:starFrame];
+        [[YGDBTool sharedDBTool] addHomeFrame:starFrame];
         
         // 获取故事产品
         YGHomeFrame *storyFrame = [[YGHomeFrame alloc] init];
@@ -104,9 +105,8 @@ static NSString *_path;
         storyProduct.rowProducts = storyArray;
         storyFrame.homeProduct = storyProduct;
         [self.homeFrameArray addObject:storyFrame];
-        
-        
-        
+        [[YGDBTool sharedDBTool] addHomeFrame:storyFrame];
+      
         refreshUI();
     });
 }

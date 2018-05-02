@@ -14,6 +14,7 @@
 #import "YGLoadingView.h"
 #import "YGBannerView.h"
 #import "YGHomeCell.h"
+#import "YGDBTool.h"
 
 #define YGAdsroductRequestFinishNote @"YGAdsProductRequestFinishNote"
 #define YGStarProductRequestFinishNote @"YGStarProductRequestFinishNote"
