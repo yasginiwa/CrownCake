@@ -16,9 +16,6 @@
 #import "YGHomeCell.h"
 #import "YGDBTool.h"
 
-#define YGAdsroductRequestFinishNote @"YGAdsProductRequestFinishNote"
-#define YGStarProductRequestFinishNote @"YGStarProductRequestFinishNote"
-
 @interface YGHomeVC ()
 @property (nonatomic, strong) NSMutableArray *homeFrames;
 @property (nonatomic, weak) UIView *loadingView;
@@ -44,11 +41,13 @@
     
     [self setloadingView];
     
-    [[YGHomeRequestTool sharedHomeRequest] startAllHomeRequest:^{
-        [self.loadingView removeFromSuperview];
-        self.homeFrames = [YGHomeRequestTool sharedHomeRequest].homeFrameArray;
-        [self.tableView reloadData];
-    }];
+    [self getHomeFrames];
+    
+//    [[YGHomeRequestTool sharedHomeRequest] startAllHomeRequest:^{
+//        [self.loadingView removeFromSuperview];
+//        self.homeFrames = [YGHomeRequestTool sharedHomeRequest].homeFrameArray;
+//        [self.tableView reloadData];
+//    }];
 }
 
 - (void)setAppearance
@@ -75,6 +74,22 @@
     loadingView.frame = navView.bounds;
     [self.navigationController.view insertSubview:loadingView atIndex:1];
     self.loadingView = loadingView;
+}
+
+- (void)getHomeFrames
+{
+    self.homeFrames = [[YGDBTool sharedDBTool] getAllHomeFrame];
+
+    if (self.homeFrames.count == 0) {
+        [[YGHomeRequestTool sharedHomeRequest] startAllHomeRequest:^{
+            self.homeFrames = [YGHomeRequestTool sharedHomeRequest].homeFrameArray;
+            [self.loadingView removeFromSuperview];
+            [self.tableView reloadData];
+        }];
+    }
+    
+    [self.loadingView removeFromSuperview];
+    [self.tableView reloadData];
 }
 
 #pragma mark - 实现tableView dataSource Delegate

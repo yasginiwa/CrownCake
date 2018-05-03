@@ -83,6 +83,19 @@ static NSString *_path;
         NSLog(@"%@", error);
     }];
     
+    dispatch_group_enter(requestGroup);
+    NSDictionary *recommendParam = @{@"groupId" : @"4"};
+    __block NSMutableArray *recommendImagesArray = [NSMutableArray array];
+    [YGProductsRequest getProductWithParams:recommendParam success:^(id result) {
+        NSArray *recommendProducts = [YGProduct mj_objectArrayWithKeyValuesArray:result];
+        for (YGProduct *product in recommendProducts) {
+            [recommendImagesArray addObject:product.productImg];
+        }
+        dispatch_group_leave(requestGroup);
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    
     dispatch_group_notify(requestGroup, dispatch_get_main_queue(), ^{
         // 获取明星产品
         YGHomeFrame *starFrame = [[YGHomeFrame alloc] init];
@@ -106,7 +119,17 @@ static NSString *_path;
         storyFrame.homeProduct = storyProduct;
         [self.homeFrameArray addObject:storyFrame];
         [[YGDBTool sharedDBTool] addHomeFrame:storyFrame];
-      
+        
+        // 获取今日推荐
+        YGHomeFrame *recommendFrame = [[YGHomeFrame alloc] init];
+        YGHomeProduct *recommendProduct = [[YGHomeProduct alloc] init];
+        recommendProduct.bannerTextEn = @"Recommended Today";
+        recommendProduct.bannerTextChs = @"今日推荐";
+        recommendProduct.rollImages = recommendImagesArray;
+        recommendFrame.homeProduct = recommendProduct;
+        [self.homeFrameArray addObject:recommendFrame];
+        [[YGDBTool sharedDBTool] addHomeFrame:recommendFrame];
+        
         refreshUI();
     });
 }

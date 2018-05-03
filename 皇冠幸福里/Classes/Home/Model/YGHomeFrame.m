@@ -39,7 +39,7 @@ MJCodingImplementation
     
     if (homeProduct.rollImages.count) {
         CGFloat rollX = 0;
-        CGFloat rollY = CGRectGetMaxY(self.bannerFrame) + kHomeCellMargin;
+        CGFloat rollY = CGRectGetMaxY(self.bannerFrame) + 10;
         CGFloat rollW = kScreenW;
         CGFloat rollH = 200;
         self.rollFrame = CGRectMake(rollX, rollY, rollW, rollH);

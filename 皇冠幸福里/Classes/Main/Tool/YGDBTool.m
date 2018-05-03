@@ -67,15 +67,29 @@ static id _instance;
     [self.db open];
     
     NSValue *adsValue = [NSValue valueWithCGRect:homeFrame.adsFrame];
+    NSData *adsData = [NSKeyedArchiver archivedDataWithRootObject:adsValue];
+    
     NSValue *bannerValue = [NSValue valueWithCGRect:homeFrame.bannerFrame];
+    NSData *bannerData = [NSKeyedArchiver archivedDataWithRootObject:bannerValue];
+    
     NSValue *rollValue = [NSValue valueWithCGRect:homeFrame.rollFrame];
+    NSData *rollData = [NSKeyedArchiver archivedDataWithRootObject:rollValue];
+    
     NSValue *gridValue = [NSValue valueWithCGRect:homeFrame.gridFrame];
+    NSData *gridData = [NSKeyedArchiver archivedDataWithRootObject:gridValue];
+    
     NSValue *rowValue = [NSValue valueWithCGRect:homeFrame.rowFrame];
+    NSData *rowData = [NSKeyedArchiver archivedDataWithRootObject:rowValue];
+    
     NSValue *mapValue = [NSValue valueWithCGRect:homeFrame.mapFrame];
+    NSData *mapData = [NSKeyedArchiver archivedDataWithRootObject:mapValue];
+    
     NSValue *bottomBtnValue = [NSValue valueWithCGRect:homeFrame.bottomBtnFrame];
+    NSData *bottomBtnData = [NSKeyedArchiver archivedDataWithRootObject:bottomBtnValue];
+    
     NSData *homeProductData = [NSKeyedArchiver archivedDataWithRootObject:homeFrame.homeProduct];
     
-    BOOL result = [self.db executeUpdate:@"INSERT INTO t_homeFrame(id, homeProduct, adsFrame, bannerFrame, rollFrame, gridFrame, rowFrame, mapFrame, bottomBtnFrame, cellHeight) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", NULL, homeProductData, bannerValue, adsValue, rollValue, gridValue, rowValue, mapValue, bottomBtnValue, @(homeFrame.cellHeight)];
+    BOOL result = [self.db executeUpdate:@"INSERT INTO t_homeFrame(id, homeProduct, adsFrame, bannerFrame, rollFrame, gridFrame, rowFrame, mapFrame, bottomBtnFrame, cellHeight) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", NULL, homeProductData, adsData, bannerData, rollData, gridData, rowData, mapData, bottomBtnData, @(homeFrame.cellHeight)];
     
     if (result) {
         NSLog(@"插表成功");
@@ -90,28 +104,45 @@ static id _instance;
 {
     [self.db open];
     
-    NSMutableArray *dataArray = [NSMutableArray array];
+    NSMutableArray *frameArray = [NSMutableArray array];
     
     FMResultSet *res = [self.db executeQuery:@"SELECT * FROM t_homeFrame"];
     
     while ([res next]) {
         
+        YGHomeFrame *homeFrame = [[YGHomeFrame alloc] init];
+        
         NSData *homeProductData = [res objectForColumn:@"homeProduct"];
-        YGHomeFrame *homeFrame = [NSKeyedUnarchiver unarchiveObjectWithData:homeProductData];
-        homeFrame.adsFrame =  [[res objectForColumn:@"adsFrame"] CGRectValue];
-        homeFrame.bannerFrame = [[res objectForColumn:@"bannerFrame"] CGRectValue];
-        homeFrame.rollFrame = [[res objectForColumn:@"rollFrame"] CGRectValue];
-        homeFrame.gridFrame = [[res objectForColumn:@"gridFrame"] CGRectValue];
-        homeFrame.rowFrame = [[res objectForColumn:@"rowFrame"] CGRectValue];
-        homeFrame.mapFrame = [[res objectForColumn:@"mapFrame"] CGRectValue];
-        homeFrame.bottomBtnFrame = [[res objectForColumn:@"bottomBtnFrame"] CGRectValue];
+        homeFrame.homeProduct = [NSKeyedUnarchiver unarchiveObjectWithData:homeProductData];
+        
+        NSData *adsData = [res objectForColumn:@"adsFrame"];
+        homeFrame.adsFrame = [[NSKeyedUnarchiver unarchiveObjectWithData:adsData] CGRectValue];
+        
+        NSData *bannerData = [res objectForColumn:@"bannerFrame"];
+        homeFrame.bannerFrame = [[NSKeyedUnarchiver unarchiveObjectWithData:bannerData] CGRectValue];
+        
+        NSData *rollData = [res objectForColumn:@"rollFrame"];
+        homeFrame.rowFrame = [[NSKeyedUnarchiver unarchiveObjectWithData:rollData] CGRectValue];
+        
+        NSData *gridData = [res objectForColumn:@"gridFrame"];
+        homeFrame.gridFrame = [[NSKeyedUnarchiver unarchiveObjectWithData:gridData] CGRectValue];
+        
+        NSData *rowData = [res objectForColumn:@"rowFrame"];
+        homeFrame.rowFrame = [[NSKeyedUnarchiver unarchiveObjectWithData:rowData] CGRectValue];
+        
+        NSData *mapData = [res objectForColumn:@"mapFrame"];
+        homeFrame.mapFrame = [[NSKeyedUnarchiver unarchiveObjectWithData:mapData] CGRectValue];
+                           
+        NSData *bottomBtnData = [res objectForColumn:@"bottomBtnFrame"];
+        homeFrame.bottomBtnFrame = [[NSKeyedUnarchiver unarchiveObjectWithData:bottomBtnData] CGRectValue];
+        
         homeFrame.cellHeight = [res doubleForColumn:@"cellHeight"];
         
-        [dataArray addObject:homeFrame];
+        [frameArray addObject:homeFrame];
     }
     
     [self.db close];
     
-    return dataArray;
+    return frameArray;
 }
 @end
