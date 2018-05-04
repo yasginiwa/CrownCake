@@ -144,6 +144,13 @@
         self.rowView.hidden = YES;
     }
     
+    if (homeProduct.mapTitle.length) {
+        self.mapView.hidden = NO;
+        self.mapView.mapTitle = homeProduct.mapTitle;
+    } else {
+        self.mapView.hidden = YES;
+    }
+    
     if (homeProduct.bottomBtnText.length) {
         self.bottomBtn.hidden = NO;
         self.bottomBtn.text = homeProduct.bottomBtnText;

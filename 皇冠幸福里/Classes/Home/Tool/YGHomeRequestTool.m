@@ -130,6 +130,14 @@ static NSString *_path;
         [self.homeFrameArray addObject:recommendFrame];
         [[YGDBTool sharedDBTool] addHomeFrame:recommendFrame];
         
+        // 获得地图定位
+        YGHomeFrame *locationFrame = [[YGHomeFrame alloc] init];
+        YGHomeProduct *locationProduct = [[YGHomeProduct alloc] init];
+        locationProduct.mapTitle = @"最近门店";
+        locationFrame.homeProduct = locationProduct;
+        [self.homeFrameArray addObject:locationFrame];
+        [[YGDBTool sharedDBTool] addHomeFrame:locationFrame];
+        
         refreshUI();
     });
 }

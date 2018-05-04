@@ -50,5 +50,7 @@
 // 网络请求
 #define kErrorNetwork @"网络似乎出现了一些问题？！"
 
+#define AMAPKEY @"978d47e254381505c5449265fc185358"
+
 
 #endif /* PrefixHeader_pch */

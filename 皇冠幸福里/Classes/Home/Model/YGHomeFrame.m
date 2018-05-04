@@ -73,11 +73,11 @@ MJCodingImplementation
     }
     
     // 计算map 地图的frame
-    if (homeProduct.hasMap) {
+    if (homeProduct.mapTitle.length) {
         CGFloat mapX = 0;
         CGFloat mapY = CGRectGetMaxY(self.rowFrame);
         CGFloat mapW = kScreenW;
-        CGFloat mapH = 300;
+        CGFloat mapH = 350;
         self.mapFrame = CGRectMake(mapX, mapY, mapW, mapH);
         self.cellHeight = CGRectGetMaxY(self.mapFrame);
     } else {

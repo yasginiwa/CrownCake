@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YGMapView : UIView
-
+@property (nonatomic, copy) NSString *mapTitle;
 @end

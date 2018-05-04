@@ -34,6 +34,18 @@
 		736F0EE7208EF35800EB702E /* YGMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 736F0EE6208EF35800EB702E /* YGMapView.m */; };
 		736F0EEA208EF38A00EB702E /* YGHomeProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 736F0EE9208EF38A00EB702E /* YGHomeProduct.m */; };
 		736F0EF0208F1B5E00EB702E /* YGHomeFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 736F0EEF208F1B5E00EB702E /* YGHomeFrame.m */; };
+		739DCBF8209C0DE20080005A /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCBF7209C0DE20080005A /* MAMapKit.framework */; };
+		739DCBFB209C0DEB0080005A /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCBF9209C0DEB0080005A /* AMapFoundationKit.framework */; };
+		739DCBFC209C0DEB0080005A /* AMapLocationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCBFA209C0DEB0080005A /* AMapLocationKit.framework */; };
+		739DCBFE209C238B0080005A /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCBFD209C238B0080005A /* GLKit.framework */; };
+		739DCC00209C23A10080005A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCBFF209C23A10080005A /* Security.framework */; };
+		739DCC02209C23A70080005A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCC01209C23A60080005A /* JavaScriptCore.framework */; };
+		739DCC04209C23DD0080005A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCC03209C23DD0080005A /* CoreTelephony.framework */; };
+		739DCC06209C23E60080005A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCC05209C23E60080005A /* SystemConfiguration.framework */; };
+		739DCC08209C23F30080005A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCC07209C23F30080005A /* libc++.tbd */; };
+		739DCC0A209C23FA0080005A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCC09209C23FA0080005A /* libz.tbd */; };
+		739DCC0C209C24070080005A /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCC0B209C24070080005A /* libstdc++.6.0.9.tbd */; };
+		739DCC0E209C2C5D0080005A /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 739DCC0D209C2C5D0080005A /* AMap.bundle */; };
 		B63757C3208E24F9008A6EA1 /* NSArray+RandomObj.m in Sources */ = {isa = PBXBuildFile; fileRef = B637572A208E24F9008A6EA1 /* NSArray+RandomObj.m */; };
 		B63757C4208E24F9008A6EA1 /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B637572C208E24F9008A6EA1 /* UIButton+Extension.m */; };
 		B63757C5208E24F9008A6EA1 /* UIImage+Extsnsion.m in Sources */ = {isa = PBXBuildFile; fileRef = B637572E208E24F9008A6EA1 /* UIImage+Extsnsion.m */; };
@@ -169,6 +181,18 @@
 		736F0EE9208EF38A00EB702E /* YGHomeProduct.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGHomeProduct.m; sourceTree = "<group>"; };
 		736F0EEE208F1B5E00EB702E /* YGHomeFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGHomeFrame.h; sourceTree = "<group>"; };
 		736F0EEF208F1B5E00EB702E /* YGHomeFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGHomeFrame.m; sourceTree = "<group>"; };
+		739DCBF7209C0DE20080005A /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = "皇冠幸福里/MAMapKit.framework"; sourceTree = "<group>"; };
+		739DCBF9209C0DEB0080005A /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapFoundationKit.framework; path = "皇冠幸福里/AMapFoundationKit.framework"; sourceTree = "<group>"; };
+		739DCBFA209C0DEB0080005A /* AMapLocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapLocationKit.framework; path = "皇冠幸福里/AMapLocationKit.framework"; sourceTree = "<group>"; };
+		739DCBFD209C238B0080005A /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		739DCBFF209C23A10080005A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		739DCC01209C23A60080005A /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		739DCC03209C23DD0080005A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		739DCC05209C23E60080005A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		739DCC07209C23F30080005A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		739DCC09209C23FA0080005A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		739DCC0B209C24070080005A /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		739DCC0D209C2C5D0080005A /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
 		B6375729208E24F9008A6EA1 /* NSArray+RandomObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+RandomObj.h"; sourceTree = "<group>"; };
 		B637572A208E24F9008A6EA1 /* NSArray+RandomObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+RandomObj.m"; sourceTree = "<group>"; };
 		B637572B208E24F9008A6EA1 /* UIButton+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extension.h"; sourceTree = "<group>"; };
@@ -337,6 +361,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				739DCC0C209C24070080005A /* libstdc++.6.0.9.tbd in Frameworks */,
+				739DCC0A209C23FA0080005A /* libz.tbd in Frameworks */,
+				739DCC08209C23F30080005A /* libc++.tbd in Frameworks */,
+				739DCC06209C23E60080005A /* SystemConfiguration.framework in Frameworks */,
+				739DCC04209C23DD0080005A /* CoreTelephony.framework in Frameworks */,
+				739DCC02209C23A70080005A /* JavaScriptCore.framework in Frameworks */,
+				739DCC00209C23A10080005A /* Security.framework in Frameworks */,
+				739DCBFE209C238B0080005A /* GLKit.framework in Frameworks */,
+				739DCBFB209C0DEB0080005A /* AMapFoundationKit.framework in Frameworks */,
+				739DCBFC209C0DEB0080005A /* AMapLocationKit.framework in Frameworks */,
+				739DCBF8209C0DE20080005A /* MAMapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +392,7 @@
 			children = (
 				733A25BB208DC39D00D9D001 /* 皇冠幸福里 */,
 				733A25BA208DC39D00D9D001 /* Products */,
+				739DCBF0209C0D4C0080005A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -380,6 +416,7 @@
 		733A25D2208DC3A400D9D001 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				739DCC0D209C2C5D0080005A /* AMap.bundle */,
 				733A25BC208DC39D00D9D001 /* AppDelegate.h */,
 				733A25BD208DC39D00D9D001 /* AppDelegate.m */,
 				733A25C2208DC39D00D9D001 /* Main.storyboard */,
@@ -661,6 +698,24 @@
 				730E87082092AF2100655BC4 /* YGHomeCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		739DCBF0209C0D4C0080005A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				739DCC0B209C24070080005A /* libstdc++.6.0.9.tbd */,
+				739DCC09209C23FA0080005A /* libz.tbd */,
+				739DCC07209C23F30080005A /* libc++.tbd */,
+				739DCC05209C23E60080005A /* SystemConfiguration.framework */,
+				739DCC03209C23DD0080005A /* CoreTelephony.framework */,
+				739DCC01209C23A60080005A /* JavaScriptCore.framework */,
+				739DCBFF209C23A10080005A /* Security.framework */,
+				739DCBFD209C238B0080005A /* GLKit.framework */,
+				739DCBF9209C0DEB0080005A /* AMapFoundationKit.framework */,
+				739DCBFA209C0DEB0080005A /* AMapLocationKit.framework */,
+				739DCBF7209C0DE20080005A /* MAMapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B6375728208E24F9008A6EA1 /* Category */ = {
@@ -961,6 +1016,7 @@
 				B6375809208E24F9008A6EA1 /* XRPlaceholder.png in Resources */,
 				B63757CD208E24F9008A6EA1 /* Info.plist in Resources */,
 				B6C1FFCA208F5E490089B091 /* HomeCell.plist in Resources */,
+				739DCC0E209C2C5D0080005A /* AMap.bundle in Resources */,
 				733A25C9208DC39D00D9D001 /* LaunchScreen.storyboard in Resources */,
 				B63757E5208E24F9008A6EA1 /* Info.plist in Resources */,
 				733A25C6208DC39D00D9D001 /* Assets.xcassets in Resources */,
@@ -1208,11 +1264,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = C7C8DA83Q8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/皇冠幸福里",
+				);
 				GCC_PREFIX_HEADER = "$SRCROOT/皇冠幸福里/PrefixHeader.pch";
 				INFOPLIST_FILE = "皇冠幸福里/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yglee.-----";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yglee.CrownCake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f531295d-0b03-45e0-bed0-91bbcad6d067";
 				PROVISIONING_PROFILE_SPECIFIER = develop_new;
@@ -1226,11 +1286,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = C7C8DA83Q8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/皇冠幸福里",
+				);
 				GCC_PREFIX_HEADER = "$SRCROOT/皇冠幸福里/PrefixHeader.pch";
 				INFOPLIST_FILE = "皇冠幸福里/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yglee.-----";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yglee.CrownCake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f531295d-0b03-45e0-bed0-91bbcad6d067";
 				PROVISIONING_PROFILE_SPECIFIER = develop_new;

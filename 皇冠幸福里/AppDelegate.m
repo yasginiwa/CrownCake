@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "YGMainTabBarVC.h"
+#import <AMapFoundationKit/AMapFoundationKit.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +18,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [self configureAPIKey];
     
     YGMainTabBarVC *mainTabBarVC = [[YGMainTabBarVC alloc] init];
     self.window = [[UIWindow alloc] init];
@@ -53,5 +56,22 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+- (void)configureAPIKey
+{
+    if ([AMAPKEY length] == 0)
+    {
+        NSString *reason = [NSString stringWithFormat:@"apiKey为空，请检查key是否正确设置。"];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:reason delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [alert show];
+    }
+    
+    NSInteger ver = [AMapServices sharedServices] ;
+    NSLog(@"%lu", ver);
+    [AMapServices sharedServices].enableHTTPS = YES;
+    [AMapServices sharedServices].apiKey = (NSString *)AMAPKEY;
+}
 
 @end

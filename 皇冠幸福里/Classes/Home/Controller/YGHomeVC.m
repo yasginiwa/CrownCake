@@ -42,12 +42,6 @@
     [self setloadingView];
     
     [self getHomeFrames];
-    
-//    [[YGHomeRequestTool sharedHomeRequest] startAllHomeRequest:^{
-//        [self.loadingView removeFromSuperview];
-//        self.homeFrames = [YGHomeRequestTool sharedHomeRequest].homeFrameArray;
-//        [self.tableView reloadData];
-//    }];
 }
 
 - (void)setAppearance
