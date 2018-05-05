@@ -5,12 +5,9 @@
 //  Created by AutoNavi.
 //  Copyright (c) 2013年 Amap. All rights reserved.
 //
-
-#import "MAConfig.h"
 #import <CoreGraphics/CoreGraphics.h>
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
-
 
 #ifdef __cplusplus
 extern "C" {
@@ -84,7 +81,7 @@ extern "C" {
     {
         return (MACoordinateRegion){centerCoordinate, span};
     }
-
+    
     /**
      * @brief 生成一个新的MACoordinateRegion
      * @param centerCoordinate   中心点坐标
@@ -135,7 +132,7 @@ extern "C" {
      * @return 1米对应的投影
      */
     extern double MAMapPointsPerMeterAtLatitude(CLLocationDegrees latitude);
-
+    
     /**
      * @brief 投影两点之间的距离
      * @param a a点
@@ -227,7 +224,7 @@ extern "C" {
      * @return 判断结果
      */
     extern BOOL MAPolygonContainsPoint(MAMapPoint point, MAMapPoint *polygon, NSUInteger count);
-
+    
     /**
      * @brief 判断经纬度点是否在多边形内
      * @param point   经纬度点
@@ -382,23 +379,6 @@ extern "C" {
      * @return 方向，详情参考系统 CLLocationDirection
      */
     extern CLLocationDirection MAGetDirectionFromCoords(CLLocationCoordinate2D fromCoord, CLLocationCoordinate2D toCoord);
-    
-    /**
-     * @brief 获取矢量坐标方向
-     * @param fromPoint 矢量坐标起点
-     * @param toPoint   矢量坐标终点
-     * @return 方向，详情参考系统 CLLocationDirection
-     */
-    extern CLLocationDirection MAGetDirectionFromPoints(MAMapPoint fromPoint, MAMapPoint toPoint);
-    
-    /**
-     * @brief 获取点到线的垂直距离
-     * @param point 起点
-     * @param lineBegin 线的起点
-     * @param lineEnd   线的终点
-     * @return 距离，单位米
-     */
-    extern double MAGetDistanceFromPointToLine(MAMapPoint point, MAMapPoint lineBegin, MAMapPoint lineEnd);
     
 #ifdef __cplusplus
 }

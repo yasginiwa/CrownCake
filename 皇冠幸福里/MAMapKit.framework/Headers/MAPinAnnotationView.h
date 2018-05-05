@@ -1,17 +1,15 @@
 //
 //  MAPinAnnotationView.h
-//  MAMapKitDemo
+//  MAMapKit
 //
-//  Created by songjian on 13-1-7.
-//  Copyright © 2016 Amap. All rights reserved.
+//  Created by AutoNavi.
+//  Copyright (c) 2013年 Amap. All rights reserved.
 //
 
-#import "MAConfig.h"
-#import "MAMapView.h"
 #import "MAAnnotationView.h"
 
-///MAPinAnnotationColor
-typedef NS_ENUM(NSInteger, MAPinAnnotationColor){
+///大头针颜色
+typedef NS_ENUM(NSInteger, MAPinAnnotationColor) {
     MAPinAnnotationColorRed = 0,    ///< 红色大头针
     MAPinAnnotationColorGreen,      ///< 绿色大头针
     MAPinAnnotationColorPurple      ///< 紫色大头针
@@ -20,10 +18,10 @@ typedef NS_ENUM(NSInteger, MAPinAnnotationColor){
 ///提供类似大头针效果的annotation view
 @interface MAPinAnnotationView : MAAnnotationView
 
-///大头针的颜色
+///大头针的颜色，有MAPinAnnotationColorRed, MAPinAnnotationColorGreen, MAPinAnnotationColorPurple三种
 @property (nonatomic) MAPinAnnotationColor pinColor;
 
-///添加到地图时是否使用下落动画效果
+///动画效果
 @property (nonatomic) BOOL animatesDrop;
 
 @end

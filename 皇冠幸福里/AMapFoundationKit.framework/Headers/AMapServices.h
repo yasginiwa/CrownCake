@@ -16,7 +16,7 @@
  */
 + (AMapServices *)sharedServices;
 
-///APIkey。设置key，需要绑定对应的bundle id。
+///APIkey。设置key，需要在高德官网控制台绑定对应的bundleid。
 @property (nonatomic, copy) NSString *apiKey;
 
 ///是否开启HTTPS，从1.3.3版本开始默认为YES。

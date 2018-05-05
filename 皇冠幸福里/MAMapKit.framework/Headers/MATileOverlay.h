@@ -1,24 +1,30 @@
 //
 //  MATileOverlay.h
-//  MapKit_static
+//  MAMapKitNew
 //
-//  Created by Li Fei on 11/22/13.
-//  Copyright © 2016 Amap. All rights reserved.
+//  Created by xiaoming han on 14-1-24.
+//  Copyright (c) 2014年 Amap. All rights reserved.
 //
 
-#import "MAConfig.h"
 #import "MAOverlay.h"
 
 ///该类是覆盖在球面墨卡托投影上的图片tiles的数据源
-@interface MATileOverlay : NSObject <MAOverlay>
+@interface MATileOverlay : NSObject<MAOverlay>
 
-///瓦片大小，默认是256x256, 最小支持64*64
-@property (nonatomic, assign) CGSize tileSize;
+/**
+ * @brief 根据指定的URLTemplate生成tileOverlay
+ * @param URLTemplate URLTemplate是一个包含"{x}","{y}","{z}","{scale}"的字符串,"{x}","{y}","{z}","{scale}"会被tile path的值所替换，并生成用来加载tile图片数据的URL 。例如 http://server/path?x={x}&y={y}&z={z}&scale={scale}
+ * @return 以指定的URLTemplate字符串生成tileOverlay
+ */
+- (instancetype)initWithURLTemplate:(NSString *)URLTemplate;
 
-///tileOverlay的可见最小Zoom值
+///默认tileSize 256x256
+@property CGSize tileSize;
+
+///overlay可以渲染的最小缩放级别。当0级时，一个tile覆盖整个世界范围，1级时覆盖 1/4th 世界，2级时1/16th，以此类推。
 @property NSInteger minimumZ;
 
-///tileOverlay的可见最大Zoom值
+///overlay可以渲染的最大缩放级别。
 @property NSInteger maximumZ;
 
 ///同initWithURLTemplate:中的URLTemplate
@@ -30,19 +36,9 @@
 ///区域外接矩形，可用来设定tileOverlay的可渲染区域
 @property (nonatomic) MAMapRect boundingMapRect;
 
-///是否停止不在显示区域内的瓦片下载，默认NO. since 5.3.0
-@property (nonatomic, assign) BOOL disableOffScreenTileLoading;
-
-/**
- * @brief 根据指定的URLTemplate生成tileOverlay
- * @param URLTemplate URLTemplate是一个包含"{x}","{y}","{z}","{scale}"的字符串,"{x}","{y}","{z}","{scale}"会被tile path的值所替换，并生成用来加载tile图片数据的URL 。例如 http://server/path?x={x}&y={y}&z={z}&scale={scale}
- * @return 以指定的URLTemplate字符串生成tileOverlay
- */
-- (id)initWithURLTemplate:(NSString *)URLTemplate;
-
 @end
 
-///MATileOverlayPath
+///记录某特定tile的据结构。contentScaleFactor根据设备的ScrennScale而定, 为1.0或2.0。
 struct MATileOverlayPath{
     NSInteger x; ///< x坐标
     NSInteger y; ///< y坐标
@@ -67,11 +63,5 @@ typedef struct MATileOverlayPath MATileOverlayPath;
  * @param result 用来传入tile数据或加载tile失败的error访问的回调block
  */
 - (void)loadTileAtPath:(MATileOverlayPath)path result:(void (^)(NSData *tileData, NSError *error))result;
-
-/**
- * @brief 取消请求瓦片，当地图显示区域发生变化时，会取消显示区域外的瓦片的下载, 当disableOffScreenTileLoading=YES时会被调用。since 5.3.0
- * @param path  tile path
- */
-- (void)cancelLoadOfTileAtPath:(MATileOverlayPath)path;
 
 @end

@@ -46,6 +46,7 @@
 		739DCC0A209C23FA0080005A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCC09209C23FA0080005A /* libz.tbd */; };
 		739DCC0C209C24070080005A /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCC0B209C24070080005A /* libstdc++.6.0.9.tbd */; };
 		739DCC0E209C2C5D0080005A /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 739DCC0D209C2C5D0080005A /* AMap.bundle */; };
+		B622858E209D7B2F008489D9 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B622858D209D7B2F008489D9 /* AMapSearchKit.framework */; };
 		B63757C3208E24F9008A6EA1 /* NSArray+RandomObj.m in Sources */ = {isa = PBXBuildFile; fileRef = B637572A208E24F9008A6EA1 /* NSArray+RandomObj.m */; };
 		B63757C4208E24F9008A6EA1 /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B637572C208E24F9008A6EA1 /* UIButton+Extension.m */; };
 		B63757C5208E24F9008A6EA1 /* UIImage+Extsnsion.m in Sources */ = {isa = PBXBuildFile; fileRef = B637572E208E24F9008A6EA1 /* UIImage+Extsnsion.m */; };
@@ -193,6 +194,7 @@
 		739DCC09209C23FA0080005A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		739DCC0B209C24070080005A /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		739DCC0D209C2C5D0080005A /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
+		B622858D209D7B2F008489D9 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapSearchKit.framework; path = "皇冠幸福里/AMapSearchKit.framework"; sourceTree = "<group>"; };
 		B6375729208E24F9008A6EA1 /* NSArray+RandomObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+RandomObj.h"; sourceTree = "<group>"; };
 		B637572A208E24F9008A6EA1 /* NSArray+RandomObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+RandomObj.m"; sourceTree = "<group>"; };
 		B637572B208E24F9008A6EA1 /* UIButton+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extension.h"; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B622858E209D7B2F008489D9 /* AMapSearchKit.framework in Frameworks */,
 				739DCC0C209C24070080005A /* libstdc++.6.0.9.tbd in Frameworks */,
 				739DCC0A209C23FA0080005A /* libz.tbd in Frameworks */,
 				739DCC08209C23F30080005A /* libc++.tbd in Frameworks */,
@@ -703,6 +706,7 @@
 		739DCBF0209C0D4C0080005A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B622858D209D7B2F008489D9 /* AMapSearchKit.framework */,
 				739DCC0B209C24070080005A /* libstdc++.6.0.9.tbd */,
 				739DCC09209C23FA0080005A /* libz.tbd */,
 				739DCC07209C23F30080005A /* libc++.tbd */,

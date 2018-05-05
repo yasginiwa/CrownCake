@@ -6,12 +6,6 @@
 //  Copyright (c) 2015年 Amap. All rights reserved.
 //
 
-
-
-#import "MAConfig.h"
-
-#if MA_INCLUDE_OVERLAY_HEATMAP
-
 #import "MATileOverlay.h"
 
 ///热力图节点
@@ -28,27 +22,27 @@
 ///热力图渐变属性
 @interface MAHeatMapGradient : NSObject<NSCopying>
 
-///颜色变化数组。 default [blue,green,red]
-@property (nonatomic, readonly) NSArray<UIColor *> *colors;
+///颜色 default [blue,green,red]
+@property (nonatomic, readonly) NSArray *colors;
 
-///颜色变化起点，需为递增数组，区间为(0, 1)。default[@(0.2),@(0.5),@(0,9)]
-@property (nonatomic, readonly) NSArray<NSNumber *> *startPoints;
+///default [@(0.2),@(0.5),@(0,9)]
+@property (nonatomic, readonly) NSArray *startPoints;
 
 /**
- * @brief 重新设置gradient的时候，需要执行 MATileOverlayRenderer 的 reloadData 方法重刷新渲染缓存。
- * @param colors      颜色
+ * @brief 重新设置gradient的时候，需要执行 MATileOverlayView 中的 reloadData 方法
+ * @param colors 颜色
  * @param startPoints startPoints
  * @return instance
  */
-- (instancetype)initWithColor:(NSArray<UIColor *> *)colors andWithStartPoints:(NSArray<NSNumber *> *)startPoints;
+- (instancetype)initWithColor:(NSArray *)colors andWithStartPoints:(NSArray *)startPoints;
 
 @end
 
 ///热力图tileOverlay
 @interface MAHeatMapTileOverlay : MATileOverlay
 
-///MAHeatMapNode array
-@property (nonatomic, strong) NSArray<MAHeatMapNode *> *data;
+///热力图节点Array
+@property (nonatomic, strong) NSArray *data;
 
 ///热力图半径，默认为12，范围:0-100 screen point
 @property (nonatomic, assign) NSInteger radius;
@@ -64,6 +58,5 @@
 
 @end
 
-#endif
 
 

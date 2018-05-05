@@ -43,7 +43,7 @@ MJCodingImplementation
         CGFloat rollW = kScreenW;
         CGFloat rollH = 200;
         self.rollFrame = CGRectMake(rollX, rollY, rollW, rollH);
-        self.cellHeight = CGRectGetMaxY(self.rollFrame);
+        self.cellHeight = CGRectGetMaxY(self.rollFrame) + 10;
     } else {
         self.rollFrame = CGRectZero;
     }
@@ -97,7 +97,7 @@ MJCodingImplementation
         CGFloat bottomBtnW = kScreenW;
         CGFloat bottomBtnH = 50;
         self.bottomBtnFrame = CGRectMake(bottomBtnX, bottomBtnY, bottomBtnW, bottomBtnH);
-        self.cellHeight = CGRectGetMaxY(self.bottomBtnFrame) + 10;
+        self.cellHeight = CGRectGetMaxY(self.bottomBtnFrame);
     } else {
         self.bottomBtnFrame = CGRectZero;
     }

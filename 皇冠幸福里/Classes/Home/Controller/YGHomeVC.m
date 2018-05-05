@@ -89,6 +89,7 @@
 #pragma mark - 实现tableView dataSource Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"%lu", self.homeFrames.count);
     return self.homeFrames.count;
 }
 

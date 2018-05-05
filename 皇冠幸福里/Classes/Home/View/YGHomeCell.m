@@ -51,6 +51,7 @@
         self.bannerView = bannerView;
         
         XRCarouselView *rollView = [[XRCarouselView alloc] init];
+        rollView.pagePosition = PositionHide;
         [self.contentView addSubview:rollView];
         self.rollView = rollView;
         
