@@ -107,7 +107,7 @@ static NSString *_path;
         starProduct.gridProducts = productArray;
         starFrame.homeProduct = starProduct;
         [self.homeFrameArray addObject:starFrame];
-        [[YGDBTool sharedDBTool] addHomeFrame:starFrame];
+//        [[YGDBTool sharedDBTool] addHomeFrame:starFrame];
         
         // 获取故事产品
         YGHomeFrame *storyFrame = [[YGHomeFrame alloc] init];
@@ -118,7 +118,7 @@ static NSString *_path;
         storyProduct.rowProducts = storyArray;
         storyFrame.homeProduct = storyProduct;
         [self.homeFrameArray addObject:storyFrame];
-        [[YGDBTool sharedDBTool] addHomeFrame:storyFrame];
+//        [[YGDBTool sharedDBTool] addHomeFrame:storyFrame];
         
         // 获取今日推荐
         YGHomeFrame *recommendFrame = [[YGHomeFrame alloc] init];
@@ -128,7 +128,7 @@ static NSString *_path;
         recommendProduct.rollImages = recommendImagesArray;
         recommendFrame.homeProduct = recommendProduct;
         [self.homeFrameArray addObject:recommendFrame];
-        [[YGDBTool sharedDBTool] addHomeFrame:recommendFrame];
+//        [[YGDBTool sharedDBTool] addHomeFrame:recommendFrame];
         
         // 获得地图定位
         YGHomeFrame *locationFrame = [[YGHomeFrame alloc] init];
@@ -136,7 +136,7 @@ static NSString *_path;
         locationProduct.mapTitle = @"最近门店";
         locationFrame.homeProduct = locationProduct;
         [self.homeFrameArray addObject:locationFrame];
-        [[YGDBTool sharedDBTool] addHomeFrame:locationFrame];
+//        [[YGDBTool sharedDBTool] addHomeFrame:locationFrame];
         
         refreshUI();
     });

@@ -15,8 +15,9 @@
 #import "YGBannerView.h"
 #import "YGHomeCell.h"
 #import "YGDBTool.h"
+#import "MJRefresh.h"
 
-@interface YGHomeVC ()
+@interface YGHomeVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong) NSMutableArray *homeFrames;
 @property (nonatomic, weak) UIView *loadingView;
 @end
@@ -39,9 +40,25 @@
     
     [self setTitleView];
     
-    [self setloadingView];
-    
     [self getHomeFrames];
+    
+    [self addRefreshHeader];
+}
+
+- (void)addRefreshHeader
+{
+    [self.tableView.mj_header beginRefreshing];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+
+}
+
+- (void)loadNewData
+{
+    [[YGHomeRequestTool sharedHomeRequest] startAllHomeRequest:^{
+        [self.homeFrames removeAllObjects];
+        [self getHomeFrames];
+        [self.tableView.mj_header endRefreshing];
+    }];
 }
 
 - (void)setAppearance
@@ -49,6 +66,7 @@
     self.tableView.backgroundColor = YGColorWithRGBA(240, 240, 240, 1.0);
     self.tableView.allowsSelection = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.delegate = self;
 }
 
 - (void)setTitleView
@@ -72,7 +90,9 @@
 
 - (void)getHomeFrames
 {
-    self.homeFrames = [[YGDBTool sharedDBTool] getAllHomeFrame];
+//    self.homeFrames = [[YGDBTool sharedDBTool] getAllHomeFrame];
+    
+    [self setloadingView];
 
     if (self.homeFrames.count == 0) {
         [[YGHomeRequestTool sharedHomeRequest] startAllHomeRequest:^{

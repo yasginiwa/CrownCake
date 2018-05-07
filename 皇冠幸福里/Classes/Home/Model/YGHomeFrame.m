@@ -75,7 +75,7 @@ MJCodingImplementation
     // 计算map 地图的frame
     if (homeProduct.mapTitle.length) {
         CGFloat mapX = 0;
-        CGFloat mapY = CGRectGetMaxY(self.rowFrame);
+        CGFloat mapY = 0;
         CGFloat mapW = kScreenW;
         CGFloat mapH = 350;
         self.mapFrame = CGRectMake(mapX, mapY, mapW, mapH);

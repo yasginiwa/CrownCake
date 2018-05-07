@@ -12,29 +12,19 @@
 #import <AMapSearchKit/AMapSearchKit.h>
 
 @interface YGMapView () <AMapLocationManagerDelegate, MAMapViewDelegate, AMapSearchDelegate>
-@property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, strong) AMapLocationManager *locMgr;
 @property (nonatomic, strong) AMapSearchAPI *mapSearch;
 @property (nonatomic, strong) MAPointAnnotation *pointAnnotaiton;
-@property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UIImageView *nearbyView;
-@property (nonatomic, strong) UILabel *nearbyLabel;
-@property (nonatomic, strong) UILabel *addressLabel;
+@property (nonatomic, weak) MAMapView *AMapView;
+@property (nonatomic, weak) UILabel *titleLabel;
+@property (nonatomic, weak) UIImageView *nearbyView;
+@property (nonatomic, weak) UILabel *nearbyLabel;
+@property (nonatomic, weak) UILabel *addressLabel;
 @end
 
 
 @implementation YGMapView
 #pragma mark - 懒加载
-- (MAMapView *)mapView
-{
-    if (_mapView == nil) {
-        _mapView = [[MAMapView alloc] init];
-        _mapView.delegate = self;
-        [self addSubview:_mapView];
-    }
-    return _mapView;
-}
-
 - (AMapLocationManager *)locMgr
 {
     if (_locMgr == nil) {
@@ -45,7 +35,7 @@
         [_locMgr setPausesLocationUpdatesAutomatically:NO];
         
         //设置允许在后台定位
-        [_locMgr setAllowsBackgroundLocationUpdates:YES];
+        [_locMgr setAllowsBackgroundLocationUpdates:NO];
         
         //设置允许连续定位逆地理
         [_locMgr setLocatingWithReGeocode:YES];
@@ -64,64 +54,86 @@
     return _mapSearch;
 }
 
-- (UILabel *)titleLabel
-{
-    if (_titleLabel == nil) {
-        _titleLabel = [[UILabel alloc] init];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = [UIFont systemFontOfSize:18];
-        _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.backgroundColor = [UIColor orangeColor];
-        _titleLabel.layer.cornerRadius = 20;
-        _titleLabel.clipsToBounds = YES;
-        [self addSubview:_titleLabel];
-    }
-    return _titleLabel;
-}
-
-- (UIImageView *)nearbyView
-{
-    if (_nearbyView == nil) {
-        _nearbyView = [[UIImageView alloc] init];
-        _nearbyView.image = [UIImage imageNamed:@"site_icon"];
-        [self addSubview:_nearbyView];
-    }
-    return _nearbyView;
-}
-
-- (UILabel *)nearbyLabel
-{
-    if (_nearbyLabel == nil) {
-        _nearbyLabel = [[UILabel alloc] init];
-        _nearbyLabel.font = [UIFont systemFontOfSize:16];
-        _nearbyLabel.textColor = [UIColor blackColor];
-        _nearbyLabel.textAlignment = NSTextAlignmentLeft;
-        _nearbyLabel.text = @"xxxasdasd";
-        [self addSubview:_nearbyLabel];
-    }
-    return _nearbyLabel;
-}
-
-- (UILabel *)addressLabel
-{
-    if (_addressLabel == nil) {
-        _addressLabel = [[UILabel alloc] init];
-        _addressLabel.font = [UIFont systemFontOfSize:15];
-        _addressLabel.textColor = [UIColor grayColor];
-        _addressLabel.textAlignment = NSTextAlignmentLeft;
-        _addressLabel.text = @"xxx";
-        [self addSubview:_addressLabel];
-    }
-    return _addressLabel;
-}
-
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        
+        MAMapView *AMapView = [[MAMapView alloc] init];
+        AMapView.delegate = self;
+        [self addSubview:AMapView];
+        self.AMapView = AMapView;
+        
+        UILabel *titleLabel = [[UILabel alloc] init];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.font = [UIFont systemFontOfSize:18];
+        titleLabel.textColor = [UIColor whiteColor];
+        titleLabel.backgroundColor = [UIColor orangeColor];
+        titleLabel.layer.cornerRadius = 20;
+        titleLabel.clipsToBounds = YES;
+        [self addSubview:titleLabel];
+        self.titleLabel = titleLabel;
+        
+        UIImageView *nearbyView = [[UIImageView alloc] init];
+        nearbyView.image = [UIImage imageNamed:@"site_icon"];
+        [self addSubview:nearbyView];
+        self.nearbyView = nearbyView;
+        
+        UILabel *nearbyLabel = [[UILabel alloc] init];
+        nearbyLabel.font = [UIFont systemFontOfSize:15];
+        nearbyLabel.textColor = [UIColor blackColor];
+        nearbyLabel.textAlignment = NSTextAlignmentLeft;
+        nearbyLabel.text = @"定位中...";
+        [self addSubview:nearbyLabel];
+        self.nearbyLabel = nearbyLabel;
+        
+        UILabel *addressLabel = [[UILabel alloc] init];
+        addressLabel.font = [UIFont systemFontOfSize:13];
+        addressLabel.textColor = [UIColor grayColor];
+        addressLabel.textAlignment = NSTextAlignmentLeft;
+        [self addSubview:addressLabel];
+        self.addressLabel = addressLabel;
+        
         [self locationOnAMap];
-        [self seachNearbyShopOnAMap];
     }
     return self;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(-20);
+        make.top.equalTo(self).offset(10);
+        make.width.equalTo(@(130));
+        make.height.equalTo(@(40));
+    }];
+    
+    [self.nearbyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(10);
+        make.top.equalTo(self).offset(55);
+        make.width.mas_equalTo(13);
+        make.height.mas_equalTo(20);
+    }];
+    
+    [self.nearbyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(28);
+        make.right.equalTo(self);
+        make.centerY.equalTo(self.nearbyView);
+        make.height.mas_equalTo(20);
+    }];
+    
+    [self.addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.nearbyLabel.mas_left);
+        make.right.equalTo(self);
+        make.top.equalTo(self).offset(75);
+        make.height.equalTo(@(20));
+    }];
+    
+    [self.AMapView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).offset(100);
+        make.right.left.bottom.equalTo(self);
+    }];
 }
 
 - (void)setMapTitle:(NSString *)mapTitle
@@ -136,27 +148,26 @@
 - (void)locationOnAMap
 {
     [self.locMgr startUpdatingLocation];
-    self.mapView.showsUserLocation = YES;
-    self.mapView.userTrackingMode = MAUserTrackingModeFollow;
+    self.AMapView.showsUserLocation = YES;
+    self.AMapView.userTrackingMode = MAUserTrackingModeFollow;
 }
 
 /**
  * 搜索附近的皇冠蛋糕店
  */
-- (void)seachNearbyShopOnAMap
+- (void)seachNearbyShopOnAMap:(MAPointAnnotation *)annotation
 {
-    AMapPOIKeywordsSearchRequest *request = [[AMapPOIKeywordsSearchRequest alloc] init];
+    AMapPOIAroundSearchRequest *request = [[AMapPOIAroundSearchRequest alloc] init];
     
-    request.keywords            = @"皇冠蛋糕";
-    request.city                = @"武汉";
-    request.types               = @"糕饼店";
+    request.location = [AMapGeoPoint locationWithLatitude:annotation.coordinate.latitude longitude:annotation.coordinate.longitude];
+    NSLog(@"%f-%f", self.pointAnnotaiton.coordinate.latitude, self.pointAnnotaiton.coordinate.longitude);
+    request.keywords = @"皇冠蛋糕";
+    
+    /* 按照距离排序. */
+    request.sortrule            = 0;
     request.requireExtension    = YES;
     
-    /*  搜索SDK 3.2.0 中新增加的功能，只搜索本城市的POI。*/
-    request.cityLimit           = YES;
-    request.requireSubPOIs      = YES;
-    
-    [self.mapSearch AMapPOIKeywordsSearch:request];
+    [self.mapSearch AMapPOIAroundSearch:request];
 }
 
 # pragma mark - POI搜索回调
@@ -167,18 +178,17 @@
         return;
     }
     
-    //解析response获取POI信息，具体解析见 Demo
-//    NSLog(@"%@", response.pois);
-//    for (AMapPOI *poi in response.pois) {
-//        NSMutableArray *poiArray = [NSMutableArray array];
-//        [poiArray addObject:poi];
-//        NSLog(@"%d", poiArray.count);
-//    }
-
+    //解析response获取POI信息
     AMapPOI *shopPoi = [response.pois firstObject];
     self.nearbyLabel.text = shopPoi.name;
-    self.addressLabel.text = shopPoi.address;
-        NSLog(@"%@", response.pois);
+    self.addressLabel.text = [NSString stringWithFormat:@"%@%@%@", shopPoi.city, shopPoi.district, shopPoi.address];
+    
+    // 添加大头针标记
+    MAPointAnnotation *nearbyAnno = [[MAPointAnnotation alloc] init];
+    nearbyAnno.title = shopPoi.name;
+    nearbyAnno.subtitle = [NSString stringWithFormat:@"%@%@%@", shopPoi.city, shopPoi.district, shopPoi.address];
+    nearbyAnno.coordinate = CLLocationCoordinate2DMake(shopPoi.enterLocation.latitude, shopPoi.enterLocation.longitude);
+    [self.AMapView addAnnotation:nearbyAnno];
 }
 
 #pragma mark - AMapLocationManager Delegate
@@ -197,14 +207,16 @@
     {
         self.pointAnnotaiton = [[MAPointAnnotation alloc] init];
         [self.pointAnnotaiton setCoordinate:location.coordinate];
-        
-        [self.mapView addAnnotation:self.pointAnnotaiton];
+
+//        [self.mapView addAnnotation:self.pointAnnotaiton];
     }
-    
+
     [self.pointAnnotaiton setCoordinate:location.coordinate];
+
+    [self.AMapView setCenterCoordinate:location.coordinate];
+    [self.AMapView setZoomLevel:14.1 animated:NO];
     
-    [self.mapView setCenterCoordinate:location.coordinate];
-    [self.mapView setZoomLevel:15.1 animated:NO];
+    [self seachNearbyShopOnAMap:self.pointAnnotaiton];
 }
 
 #pragma mark - MAMapView Delegate
@@ -221,52 +233,13 @@
             annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndetifier];
         }
         
-        annotationView.canShowCallout   = NO;
+        annotationView.canShowCallout   = YES;
         annotationView.animatesDrop     = NO;
         annotationView.draggable        = NO;
-        annotationView.image            = [UIImage imageNamed:@"icon_location.png"];
+        annotationView.image            = [UIImage imageNamed:@"logo_anno"];
         
         return annotationView;
     }
     return nil;
 }
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(-20);
-        make.top.equalTo(self).offset(10);
-        make.width.equalTo(@(130));
-        make.height.equalTo(@(40));
-    }];
-    
-    [self.nearbyView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(10);
-        make.top.equalTo(self).offset(55);
-        make.width.equalTo(@(13));
-        make.height.equalTo(@(20));
-    }];
-    
-    [self.nearbyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.nearbyView.mas_right).offset(10);
-        make.right.equalTo(self);
-        make.centerY.equalTo(self.nearbyView);
-        make.height.equalTo(@(20));
-    }];
-    
-    [self.addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.nearbyLabel.mas_left);
-        make.right.equalTo(self);
-        make.top.equalTo(self).offset(75);
-        make.height.equalTo(@(20));
-    }];
-    
-    [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(100);
-        make.right.left.bottom.equalTo(self);
-    }];
-}
-
 @end
