@@ -59,6 +59,7 @@
     if (self = [super initWithFrame:frame]) {
         
         MAMapView *AMapView = [[MAMapView alloc] init];
+        AMapView.scrollEnabled = NO;
         AMapView.delegate = self;
         [self addSubview:AMapView];
         self.AMapView = AMapView;
@@ -68,7 +69,7 @@
         titleLabel.font = [UIFont systemFontOfSize:18];
         titleLabel.textColor = [UIColor whiteColor];
         titleLabel.backgroundColor = [UIColor orangeColor];
-        titleLabel.layer.cornerRadius = 20;
+        titleLabel.layer.cornerRadius = 18;
         titleLabel.clipsToBounds = YES;
         [self addSubview:titleLabel];
         self.titleLabel = titleLabel;
@@ -108,28 +109,28 @@
         make.width.equalTo(@(130));
         make.height.equalTo(@(40));
     }];
-    
+
     [self.nearbyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(10);
         make.top.equalTo(self).offset(55);
         make.width.mas_equalTo(13);
         make.height.mas_equalTo(20);
     }];
-    
+
     [self.nearbyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(28);
         make.right.equalTo(self);
         make.centerY.equalTo(self.nearbyView);
         make.height.mas_equalTo(20);
     }];
-    
+
     [self.addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nearbyLabel.mas_left);
         make.right.equalTo(self);
         make.top.equalTo(self).offset(75);
         make.height.equalTo(@(20));
     }];
-    
+
     [self.AMapView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(100);
         make.right.left.bottom.equalTo(self);
@@ -160,7 +161,6 @@
     AMapPOIAroundSearchRequest *request = [[AMapPOIAroundSearchRequest alloc] init];
     
     request.location = [AMapGeoPoint locationWithLatitude:annotation.coordinate.latitude longitude:annotation.coordinate.longitude];
-    NSLog(@"%f-%f", self.pointAnnotaiton.coordinate.latitude, self.pointAnnotaiton.coordinate.longitude);
     request.keywords = @"皇冠蛋糕";
     
     /* 按照距离排序. */
@@ -173,11 +173,8 @@
 # pragma mark - POI搜索回调
 - (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response
 {
-    if (response.pois.count == 0)
-    {
-        return;
-    }
-    
+    if (response.pois.count == 0) return;
+
     //解析response获取POI信息
     AMapPOI *shopPoi = [response.pois firstObject];
     self.nearbyLabel.text = shopPoi.name;

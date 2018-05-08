@@ -73,16 +73,16 @@ MJCodingImplementation
     }
     
     // 计算map 地图的frame
-    if (homeProduct.mapTitle.length) {
+//    if (homeProduct.mapTitle.length) {
         CGFloat mapX = 0;
         CGFloat mapY = 0;
         CGFloat mapW = kScreenW;
         CGFloat mapH = 350;
         self.mapFrame = CGRectMake(mapX, mapY, mapW, mapH);
         self.cellHeight = CGRectGetMaxY(self.mapFrame);
-    } else {
-        self.mapFrame = CGRectZero;
-    }
+//    } else {
+//        self.mapFrame = CGRectZero;
+//    }
     
     // 计算底部按钮的frame
     if (homeProduct.bottomBtnImage.length || homeProduct.bottomBtnText.length) {

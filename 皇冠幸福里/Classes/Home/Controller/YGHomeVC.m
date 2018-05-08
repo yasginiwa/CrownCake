@@ -42,6 +42,8 @@
     
     [self getHomeFrames];
     
+    [self setloadingView];
+    
     [self addRefreshHeader];
 }
 
@@ -49,13 +51,13 @@
 {
     [self.tableView.mj_header beginRefreshing];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-
 }
 
 - (void)loadNewData
 {
     [[YGHomeRequestTool sharedHomeRequest] startAllHomeRequest:^{
         [self.homeFrames removeAllObjects];
+        [self setloadingView];
         [self getHomeFrames];
         [self.tableView.mj_header endRefreshing];
     }];
@@ -81,19 +83,15 @@
 - (void)setloadingView
 {
     YGLoadingView *loadingView = [[YGLoadingView alloc] init];
-    UIView *navView = self.navigationController.view;
-    [navView addSubview:loadingView];
-    loadingView.frame = navView.bounds;
-    [self.navigationController.view insertSubview:loadingView atIndex:1];
+    [self.tableView addSubview:loadingView];
+    loadingView.frame = self.tableView.bounds;
+    [self.tableView bringSubviewToFront:loadingView];
     self.loadingView = loadingView;
 }
 
 - (void)getHomeFrames
 {
 //    self.homeFrames = [[YGDBTool sharedDBTool] getAllHomeFrame];
-    
-    [self setloadingView];
-
     if (self.homeFrames.count == 0) {
         [[YGHomeRequestTool sharedHomeRequest] startAllHomeRequest:^{
             self.homeFrames = [YGHomeRequestTool sharedHomeRequest].homeFrameArray;
@@ -109,7 +107,6 @@
 #pragma mark - 实现tableView dataSource Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%lu", self.homeFrames.count);
     return self.homeFrames.count;
 }
 
