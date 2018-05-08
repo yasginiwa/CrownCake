@@ -16,6 +16,7 @@
 #import "YGHomeCell.h"
 #import "YGDBTool.h"
 #import "MJRefresh.h"
+#import "YGMainNavVC.h"
 
 @interface YGHomeVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong) NSMutableArray *homeFrames;
@@ -55,12 +56,9 @@
 
 - (void)loadNewData
 {
-    [[YGHomeRequestTool sharedHomeRequest] startAllHomeRequest:^{
-        [self.homeFrames removeAllObjects];
-        [self setloadingView];
-        [self getHomeFrames];
-        [self.tableView.mj_header endRefreshing];
-    }];
+    [self setloadingView];
+    
+    [self getHomeFrames];
 }
 
 - (void)setAppearance
@@ -92,16 +90,13 @@
 - (void)getHomeFrames
 {
 //    self.homeFrames = [[YGDBTool sharedDBTool] getAllHomeFrame];
-    if (self.homeFrames.count == 0) {
-        [[YGHomeRequestTool sharedHomeRequest] startAllHomeRequest:^{
-            self.homeFrames = [YGHomeRequestTool sharedHomeRequest].homeFrameArray;
-            [self.loadingView removeFromSuperview];
-            [self.tableView reloadData];
-        }];
-    }
-    
-    [self.loadingView removeFromSuperview];
-    [self.tableView reloadData];
+    [self.homeFrames removeAllObjects];
+    [[YGHomeRequestTool sharedHomeRequest] startAllHomeRequest:^{
+        self.homeFrames = [YGHomeRequestTool sharedHomeRequest].homeFrameArray;
+        [self.loadingView removeFromSuperview];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - 实现tableView dataSource Delegate
