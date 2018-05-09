@@ -27,8 +27,7 @@
 #define accessTokenFilePath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"accessToken.data"]
 
 #define kHomeCellMargin 40
-#define YGGridHeightCalcFinishNote @"gridHeightCalcFinishNote"
-#define YGRowHeightCalsFinishNote @"rowHeightCalcFinishNote"
+#define YGGridBtnDidClickNote @"gridBtnDidClickNote"
 
 #define gridMaxCol 2
 #define gridMaxCount 4

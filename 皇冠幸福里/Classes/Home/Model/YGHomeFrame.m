@@ -93,11 +93,10 @@ MJCodingImplementation
         } else if (homeProduct.rowProducts.count) {
             bottomBtnY = CGRectGetMaxY(self.rowFrame);
         }  else return;
-        
         CGFloat bottomBtnW = kScreenW;
         CGFloat bottomBtnH = 50;
         self.bottomBtnFrame = CGRectMake(bottomBtnX, bottomBtnY, bottomBtnW, bottomBtnH);
-        self.cellHeight = CGRectGetMaxY(self.bottomBtnFrame);
+        self.cellHeight = CGRectGetMaxY(self.bottomBtnFrame) + 5;
     } else {
         self.bottomBtnFrame = CGRectZero;
     }

@@ -10,7 +10,7 @@
 
 @implementation YGUrlString
 
-NSString * baseUrl = @"https://api.casamiel.cn";
+NSString *baseUrl = @"https://api.casamiel.cn";
 /** 登录 */
 NSString *const LoginURL = @"/api/v1/Login/Login";
 /** 注册会员申请虚拟卡 */

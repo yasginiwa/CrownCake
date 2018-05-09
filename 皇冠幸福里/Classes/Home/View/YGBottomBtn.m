@@ -1,6 +1,6 @@
 //
 //  YGBottomBtn.m
-//  CASAMIEL
+//  皇冠幸福里
 //
 //  Created by LiYugang on 2018/4/23.
 //  Copyright © 2018年 YGLEE. All rights reserved.
@@ -25,6 +25,11 @@
 - (void)setHighlighted:(BOOL)highlighted
 {
     
+}
+
+- (void)addTarget:(id)target action:(SEL)action
+{
+    [self addTarget:target action:action forControlEvents:UIControlEventTouchDown];
 }
 
 - (void)setImage:(NSString *)image

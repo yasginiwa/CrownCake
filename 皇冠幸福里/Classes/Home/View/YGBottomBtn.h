@@ -11,4 +11,5 @@
 @interface YGBottomBtn : UIButton
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, copy) NSString *image;
+- (void)addTarget:(id)target action:(SEL)action;
 @end

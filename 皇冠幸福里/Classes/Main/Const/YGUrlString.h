@@ -13,7 +13,8 @@
 
 #pragma mark - 项目中所有URL
 
-extern NSString * baseUrl;
+extern NSString *baseUrl;
+extern NSString *homeUrl;
 /** 登录 */
 UIKIT_EXTERN NSString *const LoginURL;
 /** 注册会员申请虚拟卡 */

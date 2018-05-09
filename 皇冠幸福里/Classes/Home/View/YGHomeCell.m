@@ -15,8 +15,10 @@
 #import "YGMapView.h"
 #import "YGBottomBtn.h"
 #import "YGHomeProduct.h"
+#import "YGProduct.h"
+#import "YGMainNavVC.h"
 
-@interface YGHomeCell ()
+@interface YGHomeCell () <YGGridViewDelegate>
 @property (nonatomic, weak) XRCarouselView *adsView;
 @property (nonatomic, weak) YGBannerView *bannerView;
 @property (nonatomic, weak) XRCarouselView *rollView;
@@ -56,6 +58,7 @@
         self.rollView = rollView;
         
         YGGridView *gridView = [[YGGridView alloc] init];
+        gridView.delegate = self;
         [self.contentView addSubview:gridView];
         self.gridView = gridView;
         
@@ -134,6 +137,7 @@
     if (homeProduct.gridProducts.count) {
         self.gridView.hidden = NO;
         self.gridView.products = homeProduct.gridProducts;
+        [self.bottomBtn addTarget:self action:@selector(randomStarProduct)];
     } else {
         self.gridView.hidden = YES;
     }
@@ -157,10 +161,26 @@
         self.bottomBtn.text = homeProduct.bottomBtnText;
         
     } else if (homeProduct.bottomBtnImage.length){
+        self.bottomBtn.hidden = NO;
         self.bottomBtn.image = homeProduct.bottomBtnImage;
         
     } else {
         self.bottomBtn.hidden = YES;
     }
+}
+
+#pragma mark - 随机变换明星产品
+- (void)randomStarProduct
+{
+    YGHomeProduct *homeProduct = self.homeFrame.homeProduct;
+    self.gridView.products = [NSArray randomArrayWithArray:homeProduct.gridProducts];
+}
+
+#pragma mark - 实现YGGridViewDelegate方法
+- (void)gridView:(YGGridView *)gridView didClickGridBtn:(YGGridButton *)gridBtn
+{
+    UIButton *selectBtn = (UIButton *)gridBtn;
+    YGProduct *product = self.gridView.products[selectBtn.tag];
+    [[NSNotificationCenter defaultCenter] postNotificationName:YGGridBtnDidClickNote object:nil userInfo:@{@"currentStarProduct" : product}];
 }
 @end

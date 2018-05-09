@@ -17,6 +17,7 @@
 #import "YGDBTool.h"
 #import "MJRefresh.h"
 #import "YGMainNavVC.h"
+#import "YGMainWebVC.h"
 
 @interface YGHomeVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong) NSMutableArray *homeFrames;
@@ -46,6 +47,8 @@
     [self setloadingView];
     
     [self addRefreshHeader];
+    
+    [self addNote];
 }
 
 - (void)addRefreshHeader
@@ -53,6 +56,8 @@
     [self.tableView.mj_header beginRefreshing];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
 }
+
+
 
 - (void)loadNewData
 {
@@ -116,5 +121,21 @@
 {
     YGHomeFrame *homeFrame = self.homeFrames[indexPath.row];
     return homeFrame.cellHeight;
+}
+
+#pragma mark - 接收通知处理
+- (void)addNote
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveGridBtnClick:) name:YGGridBtnDidClickNote object:nil];
+}
+
+- (void)receiveGridBtnClick:(NSNotification *)note
+{
+    NSDictionary *userInfo = note.userInfo;
+    YGProduct *product = userInfo[@"currentStarProduct"];
+    YGMainWebVC *webVc = [[YGMainWebVC alloc] init];
+    webVc.title = product.productName;
+    webVc.url = product.productDes;
+    [self.navigationController pushViewController:webVc animated:YES];
 }
 @end

@@ -44,10 +44,10 @@
     self.waitingIndicator.width = 25;
     self.waitingIndicator.height = 25;
     self.waitingIndicator.x = kScreenW * 0.5 - self.waitingIndicator.width - padding - self.waitingIndicator.width;
-    self.waitingIndicator.centerY = kScreenH * 0.5 - 100;
+    self.waitingIndicator.centerY = kScreenH * 0.5 - 80;
 
     self.logoView.x = CGRectGetMaxX(self.waitingIndicator.frame) + padding;
-    self.logoView.centerY = kScreenH * 0.5 - 15 - 100;
+    self.logoView.centerY = kScreenH * 0.5 - 15 - 80;
     self.logoView.width = 97;
     self.logoView.height = 30;
 }
