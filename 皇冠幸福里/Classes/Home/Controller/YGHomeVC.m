@@ -17,7 +17,7 @@
 #import "YGDBTool.h"
 #import "MJRefresh.h"
 #import "YGMainNavVC.h"
-#import "YGMainWebVC.h"
+#import "WKWebViewController.h"
 
 @interface YGHomeVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong) NSMutableArray *homeFrames;
@@ -133,9 +133,10 @@
 {
     NSDictionary *userInfo = note.userInfo;
     YGProduct *product = userInfo[@"currentStarProduct"];
-    YGMainWebVC *webVc = [[YGMainWebVC alloc] init];
-    webVc.title = product.productName;
-    webVc.url = product.productDes;
+    WKWebViewController *webVc = [[WKWebViewController alloc] init];
+    webVc.hidesBottomBarWhenPushed = YES;
+    webVc.barTitle = @"明星产品";
+    [webVc loadWebURLSring:product.productDes];
     [self.navigationController pushViewController:webVc animated:YES];
 }
 @end

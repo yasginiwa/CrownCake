@@ -14,21 +14,20 @@
 
 @implementation YGMainNavVC
 
++ (void)initialize
+{
+    UINavigationBar *appearance = [UINavigationBar appearance];
+    NSDictionary *titleAttrs = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:22]};
+    [appearance setTitleTextAttributes:titleAttrs];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self setHidesBottomBarWhenPushed:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    self.hidesBottomBarWhenPushed = YES;
-    [super pushViewController:viewController animated:animated];
 }
 
 /*
