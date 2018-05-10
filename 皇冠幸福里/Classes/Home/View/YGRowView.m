@@ -9,16 +9,11 @@
 #import "YGRowView.h"
 #import "YGProduct.h"
 
-@protocol YGStoryViewDelegate <NSObject>
-- (void)storyViewDidClickDetailButton:(UIButton *)button;
-@end
-
 @interface YGStoryView : UIView
-@property (nonatomic, weak) id<YGStoryViewDelegate> delegate;
+@property (nonatomic, weak) UIButton *detailBtn;
 @property (nonatomic, weak) UIImageView *picView;
 @property (nonatomic, weak) UILabel *titleLabel;
 @property (nonatomic, weak) UILabel *detailLabel;
-@property (nonatomic, weak) UIButton *detailBtn;
 @end
 
 @implementation YGStoryView
@@ -41,13 +36,12 @@
         self.detailLabel = detailLabel;
         
         UIButton *detailBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        detailBtn.backgroundColor = [UIColor blackColor];
+        detailBtn.backgroundColor = YGColorWithRGBA(124, 103, 82, 1.0);
         [detailBtn setTitle:@"看看" forState:UIControlStateNormal];
         [detailBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         detailBtn.titleLabel.font = [UIFont systemFontOfSize:18];
-        detailBtn.layer.cornerRadius = 15.f;
+        detailBtn.layer.cornerRadius = 14.f;
         detailBtn.clipsToBounds = YES;
-        [detailBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:detailBtn];
         self.detailBtn = detailBtn;
     }
@@ -78,16 +72,9 @@
     [self.detailBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(-20);
         make.top.equalTo(self).offset(155);
-        make.width.equalTo(@(66));
+        make.width.equalTo(@(60));
         make.height.equalTo(@(30));
     }];
-}
-
-- (void)buttonClick:(UIButton *)button
-{
-    if ([self.delegate respondsToSelector:@selector(storyViewDidClickDetailButton:)]) {
-        [self.delegate storyViewDidClickDetailButton:button];
-    }
 }
 
 @end
@@ -105,11 +92,19 @@
         for (int i = 0; i < rowMaxCount; i++) {
             YGStoryView *storyView = [[YGStoryView alloc] init];
             storyView.detailBtn.tag = i;
+            [storyView.detailBtn addTarget:self action:@selector(detailBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:storyView];
             self.storyView = storyView;
         }
     }
     return self;
+}
+
+- (void)detailBtnClick:(UIButton *)button
+{
+    if ([self.delegate respondsToSelector:@selector(rowView:didClickDetailButton:)]) {
+        [self.delegate rowView:self didClickDetailButton:button];
+    }
 }
 
 - (void)layoutSubviews

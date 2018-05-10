@@ -18,10 +18,12 @@
 #import "MJRefresh.h"
 #import "YGMainNavVC.h"
 #import "WKWebViewController.h"
+#import "YGHomeStoryVC.h"
 
-@interface YGHomeVC ()<UIScrollViewDelegate>
+@interface YGHomeVC ()
 @property (nonatomic, strong) NSMutableArray *homeFrames;
 @property (nonatomic, weak) UIView *loadingView;
+- (void)getHomeFrames;
 @end
 
 @implementation YGHomeVC
@@ -127,16 +129,44 @@
 - (void)addNote
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveGridBtnClick:) name:YGGridBtnDidClickNote object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveRowDetailBtnClick:) name:YGRowDetailBtnDidClickNote object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveloadMoreBtnClick:) name:YGLoadMoreStoryBtnDidClickNote object:nil];
 }
 
 - (void)receiveGridBtnClick:(NSNotification *)note
 {
     NSDictionary *userInfo = note.userInfo;
     YGProduct *product = userInfo[@"currentStarProduct"];
+    YGHomeFrame *starFrame = self.homeFrames[0];
+    YGHomeProduct *starProduct = starFrame.homeProduct;
     WKWebViewController *webVc = [[WKWebViewController alloc] init];
     webVc.hidesBottomBarWhenPushed = YES;
-    webVc.barTitle = @"明星产品";
+    webVc.barTitle = starProduct.bannerTextChs;
     [webVc loadWebURLSring:product.productDes];
     [self.navigationController pushViewController:webVc animated:YES];
+}
+
+- (void)receiveRowDetailBtnClick:(NSNotification *)note
+{
+    NSDictionary *userInfo = note.userInfo;
+    YGProduct *product = userInfo[@"currentStoryProduct"];
+    YGHomeFrame *storyFrame = self.homeFrames[1];
+    YGHomeProduct *storyProduct = storyFrame.homeProduct;
+    WKWebViewController *webVc = [[WKWebViewController alloc] init];
+    webVc.hidesBottomBarWhenPushed = YES;
+    webVc.barTitle = storyProduct.bannerTextChs;
+    [webVc loadWebURLSring:product.productDes];
+    [self.navigationController pushViewController:webVc animated:YES];
+}
+
+- (void)receiveloadMoreBtnClick:(NSNotification *)note
+{
+    NSDictionary *userInfo = note.userInfo;
+    NSMutableArray *storyProducts = userInfo[@"allStoryProducts"];
+    NSArray *products = @[storyProducts];
+    YGHomeStoryVC *storyVC = [[YGHomeStoryVC alloc] init];
+    storyVC.products = products;
+    storyVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:storyVC animated:YES];
 }
 @end

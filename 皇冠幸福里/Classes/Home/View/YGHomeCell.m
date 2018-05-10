@@ -17,8 +17,9 @@
 #import "YGHomeProduct.h"
 #import "YGProduct.h"
 #import "YGMainNavVC.h"
+#import "YGHomeStoryVC.h"
 
-@interface YGHomeCell () <YGGridViewDelegate>
+@interface YGHomeCell () <YGGridViewDelegate, YGRowViewDelegate>
 @property (nonatomic, weak) XRCarouselView *adsView;
 @property (nonatomic, weak) YGBannerView *bannerView;
 @property (nonatomic, weak) XRCarouselView *rollView;
@@ -63,6 +64,7 @@
         self.gridView = gridView;
         
         YGRowView *rowView = [[YGRowView alloc] init];
+        rowView.delegate = self;
         [self.contentView addSubview:rowView];
         self.rowView = rowView;
         
@@ -145,6 +147,7 @@
     if (homeProduct.rowProducts.count) {
         self.rowView.hidden = NO;
         self.rowView.products = homeProduct.rowProducts;
+        [self.bottomBtn addTarget:self action:@selector(loadMoreStoryProduct)];
     } else {
         self.rowView.hidden = YES;
     }
@@ -169,11 +172,17 @@
     }
 }
 
-#pragma mark - 随机变换明星产品
+/** 随机变换明星产品 */
 - (void)randomStarProduct
 {
     YGHomeProduct *homeProduct = self.homeFrame.homeProduct;
     self.gridView.products = [NSArray randomArrayWithArray:homeProduct.gridProducts];
+}
+
+/** 查看更多产品故事 */
+- (void)loadMoreStoryProduct
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:YGLoadMoreStoryBtnDidClickNote object:nil userInfo:@{@"allStoryProducts" : self.rowView.products}];
 }
 
 #pragma mark - 实现YGGridViewDelegate方法
@@ -182,5 +191,12 @@
     UIButton *selectBtn = (UIButton *)gridBtn;
     YGProduct *product = self.gridView.products[selectBtn.tag];
     [[NSNotificationCenter defaultCenter] postNotificationName:YGGridBtnDidClickNote object:nil userInfo:@{@"currentStarProduct" : product}];
+}
+
+#pragma mark - 实现YGRowViewDelegate方法
+- (void)rowView:(YGRowView *)rowView didClickDetailButton:(UIButton *)button
+{
+    YGProduct *product = self.rowView.products[button.tag];
+    [[NSNotificationCenter defaultCenter] postNotificationName:YGRowDetailBtnDidClickNote object:nil userInfo:@{@"currentStoryProduct" : product}];
 }
 @end

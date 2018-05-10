@@ -28,6 +28,8 @@
 
 #define kHomeCellMargin 40
 #define YGGridBtnDidClickNote @"gridBtnDidClickNote"
+#define YGRowDetailBtnDidClickNote @"rowDetailBtnDidClickNote"
+#define YGLoadMoreStoryBtnDidClickNote @"loadMoreStoryBtnDidClickNote"
 
 #define gridMaxCol 2
 #define gridMaxCount 4
