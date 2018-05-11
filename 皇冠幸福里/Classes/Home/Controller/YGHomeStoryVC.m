@@ -11,6 +11,9 @@
 #import "MJRefresh.h"
 #import "YGRowView.h"
 #import "YGHomeProduct.h"
+#import "YGHomeFrame.h"
+#import "WKWebViewController.h"
+#import "YGProduct.h"
 
 @interface YGStoryCell : UITableViewCell
 @property (nonatomic, weak) YGRowView *rowView;
@@ -33,7 +36,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        YGRowView *rowView = [[YGRowView alloc] init];
+        YGRowView *rowView = [[YGRowView alloc] initWithType:rowTypeDetail];
         [self.contentView addSubview:rowView];
         self.rowView = rowView;
     }
@@ -50,25 +53,42 @@
 
 @interface YGHomeStoryVC ()
 
-
 @end
 
 @implementation YGHomeStoryVC
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setAppearance];
+    
+    [self addNote];
+}
+
+- (void)addNote
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiceRowViewClick:) name:YGRowDetailBtnDidClickNote object:nil];
 }
 
 - (void)setAppearance
 {
-    self.tableView.backgroundColor = YGColorWithRGBA(240, 240, 240, 1.0);
     self.tableView.allowsSelection = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
+- (void)receiceRowViewClick:(NSNotification *)note
+{
+    NSDictionary *userInfo = note.userInfo;
+    NSUInteger index = [userInfo[@"index"] integerValue];
+    YGProduct *storyProduct = self.products[index];
+    WKWebViewController *webVc = [[WKWebViewController alloc] init];
+    webVc.hidesBottomBarWhenPushed = YES;
+    [webVc loadWebURLSring:storyProduct.productDes];
+    [self.navigationController pushViewController:webVc animated:YES];
+}
+
+
+#pragma mark - tableViewDelegate dataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.products.count;
@@ -76,7 +96,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 1000;
+    return 1050;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

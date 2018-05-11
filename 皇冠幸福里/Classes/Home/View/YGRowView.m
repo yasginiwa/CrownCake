@@ -14,6 +14,7 @@
 @property (nonatomic, weak) UIImageView *picView;
 @property (nonatomic, weak) UILabel *titleLabel;
 @property (nonatomic, weak) UILabel *detailLabel;
+@property (nonatomic, strong) YGProduct *product;
 @end
 
 @implementation YGStoryView
@@ -48,6 +49,17 @@
     return self;
 }
 
+- (void)setProduct:(YGProduct *)product
+{
+    _product = product;
+    
+    NSURL *imgUrl = [NSURL URLWithString:product.productImg];
+    UIImage *phImg = [UIImage imageNamed:@"logo_banner_gray"];
+    [self.picView sd_setImageWithURL:imgUrl placeholderImage:phImg];
+    self.titleLabel.text = product.productName;
+    self.detailLabel.text = product.summary;
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -79,17 +91,23 @@
 
 @end
 
-
 @interface YGRowView ()
 @property (nonatomic, weak) YGStoryView *storyView;
+@property (nonatomic, assign) NSUInteger maxCount;
 @end
 
-
 @implementation YGRowView
-- (instancetype)initWithFrame:(CGRect)frame
+
+- (instancetype)initWithType:(rowType)type
 {
-    if (self = [super initWithFrame:frame]) {
-        for (int i = 0; i < rowMaxCount; i++) {
+    if (self = [super init]) {
+        if (type == rowTypeSummary) {
+            self.maxCount = 3;
+        } else if (type == rowTypeDetail) {
+            self.maxCount = 5;
+        }
+        
+        for (int i = 0; i < self.maxCount; i++) {
             YGStoryView *storyView = [[YGStoryView alloc] init];
             storyView.detailBtn.tag = i;
             [storyView.detailBtn addTarget:self action:@selector(detailBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -102,16 +120,15 @@
 
 - (void)detailBtnClick:(UIButton *)button
 {
-    if ([self.delegate respondsToSelector:@selector(rowView:didClickDetailButton:)]) {
-        [self.delegate rowView:self didClickDetailButton:button];
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:YGRowDetailBtnDidClickNote object:nil userInfo:@{@"index" : @(button.tag)}];
+    NSLog(@"--%lu--", button.tag);
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    for (int i = 0; i < rowMaxCount; i++) {
+    for (int i = 0; i < self.maxCount; i++) {
         YGStoryView *storyView = self.subviews[i];
         CGFloat storyX = 0;
         CGFloat storyW = kScreenW;
@@ -119,21 +136,17 @@
         CGFloat storyY = i * storyH;
         storyView.frame = CGRectMake(storyX, storyY, storyW, storyH);
     }
+    self.height = [self.subviews lastObject].height;
 }
 
 - (void)setProducts:(NSArray *)products
 {
     _products = products;
-    NSArray *rowProducts = [products subarrayWithRange:NSMakeRange(0, rowMaxCount)];
     
-    for (int i = 0; i < rowMaxCount; i++) {
-        YGProduct *rowProduct = rowProducts[i];
+    for (int i = 0; i < self.maxCount; i++) {
+        YGProduct *rowProduct = self.products[i];
         YGStoryView *storyView = self.subviews[i];
-        NSURL *imgUrl = [NSURL URLWithString:rowProduct.productImg];
-        UIImage *phImg = [UIImage imageNamed:@"logo_banner_gray"];
-        [storyView.picView sd_setImageWithURL:imgUrl placeholderImage:phImg];
-        storyView.titleLabel.text = rowProduct.productName;
-        storyView.detailLabel.text = rowProduct.summary;
+        storyView.product = rowProduct;
     }
 }
 @end

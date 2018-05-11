@@ -149,13 +149,14 @@
 - (void)receiveRowDetailBtnClick:(NSNotification *)note
 {
     NSDictionary *userInfo = note.userInfo;
-    YGProduct *product = userInfo[@"currentStoryProduct"];
+    NSUInteger index = [userInfo[@"index"] integerValue];
     YGHomeFrame *storyFrame = self.homeFrames[1];
-    YGHomeProduct *storyProduct = storyFrame.homeProduct;
+    YGHomeProduct *storyHomeProduct = storyFrame.homeProduct;
+    YGProduct *storyProduct = storyHomeProduct.rowProducts[index];
     WKWebViewController *webVc = [[WKWebViewController alloc] init];
     webVc.hidesBottomBarWhenPushed = YES;
-    webVc.barTitle = storyProduct.bannerTextChs;
-    [webVc loadWebURLSring:product.productDes];
+    webVc.barTitle = storyHomeProduct.bannerTextChs;
+    [webVc loadWebURLSring:storyProduct.productDes];receiceRowViewClick:
     [self.navigationController pushViewController:webVc animated:YES];
 }
 

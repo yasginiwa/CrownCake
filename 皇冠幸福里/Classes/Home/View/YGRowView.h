@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-@class YGRowView;
 
-@protocol YGRowViewDelegate <NSObject>
-- (void)rowView:(YGRowView *)rowView didClickDetailButton:(UIButton *)button;
-@end
+typedef enum {
+    rowTypeSummary,
+    rowTypeDetail
+}rowType;
 
 @interface YGRowView : UIView
 @property (nonatomic, strong) NSArray *products;
-@property (nonatomic, weak) id<YGRowViewDelegate> delegate;
+@property (nonatomic, assign) rowType type;
+- (instancetype)initWithType:(rowType)type;
 @end
