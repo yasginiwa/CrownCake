@@ -134,15 +134,16 @@
 }
 
 - (void)receiveGridBtnClick:(NSNotification *)note
-{
+{    
     NSDictionary *userInfo = note.userInfo;
-    YGProduct *product = userInfo[@"currentStarProduct"];
+    NSUInteger index = [userInfo[@"index"] integerValue];
     YGHomeFrame *starFrame = self.homeFrames[0];
-    YGHomeProduct *starProduct = starFrame.homeProduct;
+    YGHomeProduct *starHomeProduct = starFrame.homeProduct;
+    YGProduct *starProduct = starHomeProduct.gridProducts[index];
     WKWebViewController *webVc = [[WKWebViewController alloc] init];
     webVc.hidesBottomBarWhenPushed = YES;
-    webVc.barTitle = starProduct.bannerTextChs;
-    [webVc loadWebURLSring:product.productDes];
+    webVc.barTitle = starHomeProduct.bannerTextChs;
+    [webVc loadWebURLSring:starProduct.productDes];
     [self.navigationController pushViewController:webVc animated:YES];
 }
 
@@ -156,18 +157,25 @@
     WKWebViewController *webVc = [[WKWebViewController alloc] init];
     webVc.hidesBottomBarWhenPushed = YES;
     webVc.barTitle = storyHomeProduct.bannerTextChs;
-    [webVc loadWebURLSring:storyProduct.productDes];receiceRowViewClick:
+    [webVc loadWebURLSring:storyProduct.productDes];
     [self.navigationController pushViewController:webVc animated:YES];
 }
 
 - (void)receiveloadMoreBtnClick:(NSNotification *)note
 {
-    NSDictionary *userInfo = note.userInfo;
-    NSMutableArray *storyProducts = userInfo[@"allStoryProducts"];
-    NSArray *products = @[storyProducts];
-    YGHomeStoryVC *storyVC = [[YGHomeStoryVC alloc] init];
-    storyVC.products = products;
-    storyVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:storyVC animated:YES];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        NSDictionary *userInfo = note.userInfo;
+        NSMutableArray *storyProducts = userInfo[@"allStoryProducts"];
+        NSArray *products = @[storyProducts];
+        YGHomeStoryVC *storyVC = [[YGHomeStoryVC alloc] init];
+        storyVC.products = products;
+        storyVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:storyVC animated:YES];
+    }];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

@@ -61,8 +61,8 @@
 
 - (void)clickGridBtn:(YGGridButton *)btn
 {
-    if ([self.delegate respondsToSelector:@selector(gridView:didClickGridBtn:)]) {
-        [self.delegate gridView:self didClickGridBtn:btn];
-    }
+    self.products;
+    NSDictionary *userInfo = @{@"index" : @(btn.tag)};
+    [[NSNotificationCenter defaultCenter] postNotificationName:YGGridBtnDidClickNote object:nil userInfo:userInfo];
 }
 @end

@@ -105,4 +105,9 @@
     cell.storyProducts = self.products[indexPath.row];
     return cell;
 }
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 @end

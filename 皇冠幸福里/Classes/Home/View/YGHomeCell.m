@@ -19,7 +19,7 @@
 #import "YGMainNavVC.h"
 #import "YGHomeStoryVC.h"
 
-@interface YGHomeCell () <YGGridViewDelegate>
+@interface YGHomeCell ()
 @property (nonatomic, weak) XRCarouselView *adsView;
 @property (nonatomic, weak) YGBannerView *bannerView;
 @property (nonatomic, weak) XRCarouselView *rollView;
@@ -59,7 +59,6 @@
         self.rollView = rollView;
         
         YGGridView *gridView = [[YGGridView alloc] init];
-        gridView.delegate = self;
         [self.contentView addSubview:gridView];
         self.gridView = gridView;
         
@@ -182,13 +181,5 @@
 - (void)loadMoreStoryProduct
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:YGLoadMoreStoryBtnDidClickNote object:nil userInfo:@{@"allStoryProducts" : self.rowView.products}];
-}
-
-#pragma mark - 实现YGGridViewDelegate方法
-- (void)gridView:(YGGridView *)gridView didClickGridBtn:(YGGridButton *)gridBtn
-{
-    UIButton *selectBtn = (UIButton *)gridBtn;
-    YGProduct *product = self.gridView.products[selectBtn.tag];
-    [[NSNotificationCenter defaultCenter] postNotificationName:YGGridBtnDidClickNote object:nil userInfo:@{@"currentStarProduct" : product}];
 }
 @end

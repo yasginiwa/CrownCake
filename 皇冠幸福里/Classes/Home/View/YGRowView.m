@@ -120,7 +120,8 @@
 
 - (void)detailBtnClick:(UIButton *)button
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:YGRowDetailBtnDidClickNote object:nil userInfo:@{@"index" : @(button.tag)}];
+    NSDictionary *userInfo = @{@"index" : @(button.tag)};
+    [[NSNotificationCenter defaultCenter] postNotificationName:YGRowDetailBtnDidClickNote object:nil userInfo:userInfo];
     NSLog(@"--%lu--", button.tag);
 }
 
@@ -128,15 +129,14 @@
 {
     [super layoutSubviews];
     
+    CGFloat storyX = 0;
+    CGFloat storyW = kScreenW;
+    CGFloat storyH = 210;
     for (int i = 0; i < self.maxCount; i++) {
         YGStoryView *storyView = self.subviews[i];
-        CGFloat storyX = 0;
-        CGFloat storyW = kScreenW;
-        CGFloat storyH = 210;
         CGFloat storyY = i * storyH;
         storyView.frame = CGRectMake(storyX, storyY, storyW, storyH);
     }
-    self.height = [self.subviews lastObject].height;
 }
 
 - (void)setProducts:(NSArray *)products

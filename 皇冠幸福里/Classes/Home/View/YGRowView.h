@@ -15,6 +15,5 @@ typedef enum {
 
 @interface YGRowView : UIView
 @property (nonatomic, strong) NSArray *products;
-@property (nonatomic, assign) rowType type;
 - (instancetype)initWithType:(rowType)type;
 @end

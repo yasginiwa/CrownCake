@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class YGGridView, YGGridButton;
-
-@protocol YGGridViewDelegate <NSObject>
-@optional
-- (void)gridView:(YGGridView *)gridView didClickGridBtn:(YGGridButton *)gridBtn;
-@end
+//@class YGGridView, YGGridButton;
+//
+//@protocol YGGridViewDelegate <NSObject>
+//@optional
+//- (void)gridView:(YGGridView *)gridView didClickGridBtn:(YGGridButton *)gridBtn;
+//@end
 
 @interface YGGridView : UIView
-@property (nonatomic, weak) id<YGGridViewDelegate> delegate;
+//@property (nonatomic, weak) id<YGGridViewDelegate> delegate;
 @property (nonatomic, strong) NSArray *products;
 @end
