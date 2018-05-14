@@ -174,7 +174,8 @@
 - (void)randomStarProduct
 {
     YGHomeProduct *homeProduct = self.homeFrame.homeProduct;
-    self.gridView.products = [NSArray randomArrayWithArray:homeProduct.gridProducts];
+    homeProduct.gridProducts = [NSArray randomArrayWithArray:homeProduct.gridProducts];
+    self.gridView.products = homeProduct.gridProducts;
 }
 
 /** 查看更多产品故事 */
