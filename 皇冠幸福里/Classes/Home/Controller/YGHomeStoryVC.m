@@ -14,6 +14,7 @@
 #import "YGHomeFrame.h"
 #import "WKWebViewController.h"
 #import "YGProduct.h"
+#import "YGMainNavVC.h"
 
 @interface YGStoryCell : UITableViewCell
 @property (nonatomic, weak) YGRowView *rowView;
@@ -37,6 +38,7 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         YGRowView *rowView = [[YGRowView alloc] initWithType:rowTypeDetail];
+        rowView.frame = CGRectMake(0, 0, kScreenW, 1050);
         [self.contentView addSubview:rowView];
         self.rowView = rowView;
     }
@@ -74,16 +76,18 @@
 {
     self.tableView.allowsSelection = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.navigationItem.title = @"皇冠故事";
 }
 
 - (void)receiceRowViewClick:(NSNotification *)note
 {
     NSDictionary *userInfo = note.userInfo;
     NSUInteger index = [userInfo[@"index"] integerValue];
-    YGProduct *storyProduct = self.products[index];
+    YGProduct *storyProduct = self.products[0][index];
     WKWebViewController *webVc = [[WKWebViewController alloc] init];
     webVc.hidesBottomBarWhenPushed = YES;
     [webVc loadWebURLSring:storyProduct.productDes];
+//    YGMainNavVC *navVc = [[YGMainNavVC alloc] initWithRootViewController:self];
     [self.navigationController pushViewController:webVc animated:YES];
 }
 

@@ -122,7 +122,6 @@
 {
     NSDictionary *userInfo = @{@"index" : @(button.tag)};
     [[NSNotificationCenter defaultCenter] postNotificationName:YGRowDetailBtnDidClickNote object:nil userInfo:userInfo];
-    NSLog(@"--%lu--", button.tag);
 }
 
 - (void)layoutSubviews

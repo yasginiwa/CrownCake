@@ -163,15 +163,13 @@
 
 - (void)receiveloadMoreBtnClick:(NSNotification *)note
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        NSDictionary *userInfo = note.userInfo;
-        NSMutableArray *storyProducts = userInfo[@"allStoryProducts"];
-        NSArray *products = @[storyProducts];
-        YGHomeStoryVC *storyVC = [[YGHomeStoryVC alloc] init];
-        storyVC.products = products;
-        storyVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:storyVC animated:YES];
-    }];
+    NSDictionary *userInfo = note.userInfo;
+    NSMutableArray *storyProducts = userInfo[@"allStoryProducts"];
+    NSArray *products = @[storyProducts];
+    YGHomeStoryVC *storyVC = [[YGHomeStoryVC alloc] init];
+    storyVC.products = products;
+    storyVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:storyVC animated:YES];
 }
 
 - (void)dealloc
