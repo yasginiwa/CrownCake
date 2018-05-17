@@ -51,6 +51,8 @@
 		73FFFAF520AD1C0400A3DB87 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FFFAF020AD1C0400A3DB87 /* NJKWebViewProgress.m */; };
 		73FFFAF620AD1C0400A3DB87 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FFFAF220AD1C0400A3DB87 /* NJKWebViewProgressView.m */; };
 		73FFFAF720AD1C0400A3DB87 /* YGWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FFFAF420AD1C0400A3DB87 /* YGWebVC.m */; };
+		73FFFAFF20AD45B900A3DB87 /* YGShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FFFAFE20AD45B900A3DB87 /* YGShopCell.m */; };
+		73FFFB0220AD45C900A3DB87 /* YGShop.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FFFB0120AD45C900A3DB87 /* YGShop.m */; };
 		B622858E209D7B2F008489D9 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B622858D209D7B2F008489D9 /* AMapSearchKit.framework */; };
 		B63757C3208E24F9008A6EA1 /* NSArray+RandomObj.m in Sources */ = {isa = PBXBuildFile; fileRef = B637572A208E24F9008A6EA1 /* NSArray+RandomObj.m */; };
 		B63757C4208E24F9008A6EA1 /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B637572C208E24F9008A6EA1 /* UIButton+Extension.m */; };
@@ -229,6 +231,10 @@
 		73FFFAF220AD1C0400A3DB87 /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
 		73FFFAF320AD1C0400A3DB87 /* YGWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGWebVC.h; sourceTree = "<group>"; };
 		73FFFAF420AD1C0400A3DB87 /* YGWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGWebVC.m; sourceTree = "<group>"; };
+		73FFFAFD20AD45B900A3DB87 /* YGShopCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGShopCell.h; sourceTree = "<group>"; };
+		73FFFAFE20AD45B900A3DB87 /* YGShopCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGShopCell.m; sourceTree = "<group>"; };
+		73FFFB0020AD45C900A3DB87 /* YGShop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGShop.h; sourceTree = "<group>"; };
+		73FFFB0120AD45C900A3DB87 /* YGShop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGShop.m; sourceTree = "<group>"; };
 		B622858D209D7B2F008489D9 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapSearchKit.framework; path = "皇冠幸福里/AMapSearchKit.framework"; sourceTree = "<group>"; };
 		B6375729208E24F9008A6EA1 /* NSArray+RandomObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+RandomObj.h"; sourceTree = "<group>"; };
 		B637572A208E24F9008A6EA1 /* NSArray+RandomObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+RandomObj.m"; sourceTree = "<group>"; };
@@ -632,8 +638,8 @@
 			isa = PBXGroup;
 			children = (
 				733A25ED208DC3C900D9D001 /* Controller */,
-				733A25EE208DC3C900D9D001 /* Model */,
-				733A25EF208DC3C900D9D001 /* View */,
+				73FFFAFB20AD45A700A3DB87 /* Model */,
+				73FFFAFC20AD45A700A3DB87 /* View */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -645,20 +651,6 @@
 				736F0ED4208ED05F00EB702E /* YGShopVC.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		733A25EE208DC3C900D9D001 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		733A25EF208DC3C900D9D001 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		736F0E9D208EC03F00EB702E /* Controller */ = {
@@ -820,6 +812,24 @@
 				73FFFAF220AD1C0400A3DB87 /* NJKWebViewProgressView.m */,
 			);
 			path = NJKWebViewProgress;
+			sourceTree = "<group>";
+		};
+		73FFFAFB20AD45A700A3DB87 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				73FFFB0020AD45C900A3DB87 /* YGShop.h */,
+				73FFFB0120AD45C900A3DB87 /* YGShop.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		73FFFAFC20AD45A700A3DB87 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73FFFAFD20AD45B900A3DB87 /* YGShopCell.h */,
+				73FFFAFE20AD45B900A3DB87 /* YGShopCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B6375728208E24F9008A6EA1 /* Category */ = {
@@ -1282,7 +1292,9 @@
 				7366CE0820907625009E6B76 /* YGLoadingView.m in Sources */,
 				736F0ECC208ECD0500EB702E /* YGDiscoveryVC.m in Sources */,
 				736F0EE4208EF34200EB702E /* YGBottomBtn.m in Sources */,
+				73FFFAFF20AD45B900A3DB87 /* YGShopCell.m in Sources */,
 				B6D35A8E20A05D5A00BED18D /* MJRefreshAutoStateFooter.m in Sources */,
+				73FFFB0220AD45C900A3DB87 /* YGShop.m in Sources */,
 				B6375803208E24F9008A6EA1 /* SVIndefiniteAnimatedView.m in Sources */,
 				B63757FB208E24F9008A6EA1 /* UIImage+ForceDecode.m in Sources */,
 				B63757D3208E24F9008A6EA1 /* MASViewConstraint.m in Sources */,
