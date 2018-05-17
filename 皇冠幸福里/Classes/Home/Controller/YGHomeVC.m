@@ -17,7 +17,7 @@
 #import "YGDBTool.h"
 #import "MJRefresh.h"
 #import "YGMainNavVC.h"
-#import "WKWebViewController.h"
+#import "YGWebVC.h"
 #import "YGHomeStoryVC.h"
 
 @interface YGHomeVC ()
@@ -140,10 +140,10 @@
     YGHomeFrame *starFrame = self.homeFrames[0];
     YGHomeProduct *starHomeProduct = starFrame.homeProduct;
     YGProduct *starProduct = starHomeProduct.gridProducts[index];
-    WKWebViewController *webVc = [[WKWebViewController alloc] init];
+    YGWebVC *webVc = [[YGWebVC alloc] init];
     webVc.hidesBottomBarWhenPushed = YES;
-    webVc.barTitle = starHomeProduct.bannerTextChs;
-    [webVc loadWebURLSring:starProduct.productDes];
+    webVc.title = starHomeProduct.bannerTextChs;
+    webVc.url = starProduct.productDes;
     [self.navigationController pushViewController:webVc animated:YES];
 }
 
@@ -154,10 +154,10 @@
     YGHomeFrame *storyFrame = self.homeFrames[1];
     YGHomeProduct *storyHomeProduct = storyFrame.homeProduct;
     YGProduct *storyProduct = storyHomeProduct.rowProducts[index];
-    WKWebViewController *webVc = [[WKWebViewController alloc] init];
+    YGWebVC *webVc = [[YGWebVC alloc] init];
     webVc.hidesBottomBarWhenPushed = YES;
-    webVc.barTitle = storyHomeProduct.bannerTextChs;
-    [webVc loadWebURLSring:storyProduct.productDes];
+    webVc.title = storyHomeProduct.bannerTextChs;
+    webVc.url = storyProduct.productDes;
     [self.navigationController pushViewController:webVc animated:YES];
 }
 

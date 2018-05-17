@@ -12,7 +12,7 @@
 #import "YGRowView.h"
 #import "YGHomeProduct.h"
 #import "YGHomeFrame.h"
-#import "WKWebViewController.h"
+#import "YGWebVC.h"
 #import "YGProduct.h"
 #import "YGMainNavVC.h"
 
@@ -77,6 +77,12 @@
     self.tableView.allowsSelection = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.navigationItem.title = @"皇冠故事";
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backBtn setImage:[UIImage imageNamed:@"back_icon"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+    self.navigationItem.leftBarButtonItem = backItem;
 }
 
 - (void)receiceRowViewClick:(NSNotification *)note
@@ -84,13 +90,14 @@
     NSDictionary *userInfo = note.userInfo;
     NSUInteger index = [userInfo[@"index"] integerValue];
     YGProduct *storyProduct = self.products[0][index];
-    WKWebViewController *webVc = [[WKWebViewController alloc] init];
-    webVc.hidesBottomBarWhenPushed = YES;
-    [webVc loadWebURLSring:storyProduct.productDes];
-//    YGMainNavVC *navVc = [[YGMainNavVC alloc] initWithRootViewController:self];
-    [self.navigationController pushViewController:webVc animated:YES];
+    YGWebVC *webVc = [[YGWebVC alloc] init];
+    webVc.url = storyProduct.productDes;
 }
 
+- (void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark - tableViewDelegate dataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
