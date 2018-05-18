@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class YGShop;
+
 @interface YGShopCell : UITableViewCell
-+ (instancetype)initWithTableView:(UITableView *)tableView;
+@property (nonatomic, strong) YGShop *shop;
+//+ (instancetype)cellWithTableView:(UITableView *)tableView;
 @end

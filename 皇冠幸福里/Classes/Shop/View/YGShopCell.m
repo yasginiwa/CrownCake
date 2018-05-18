@@ -7,64 +7,46 @@
 //
 
 #import "YGShopCell.h"
+#import "YGShop.h"
 
 @interface YGShopCell ()
 // 店铺名称
-@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 // 店铺地址
-@property (nonatomic, strong) UILabel *addressLabel;
+@property (nonatomic, weak) IBOutlet UILabel *addressLabel;
 // 到店铺距离
-@property (nonatomic, strong) UIButton *distanceBtn;
+@property (nonatomic, weak) IBOutlet UIButton *distanceBtn;
 // 到店铺所需时间
-@property (nonatomic, strong) UIButton *timeBtn;
+@property (nonatomic, weak) IBOutlet UIButton *timeBtn;
 // 到店铺导航按钮
-@property (nonatomic, strong) UIButton *routeBtn;
+@property (nonatomic, weak) IBOutlet UIButton *routeBtn;
 // 店铺封面图片
-@property (nonatomic, strong) UIImageView *iconView;
+@property (nonatomic, weak) IBOutlet UIImageView *iconView;
 @end
 
 @implementation YGShopCell
 
-+ (instancetype)initWithTableView:(UITableView *)tableView
-{
-    static NSString *ID = @"shop";
-    YGShopCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[YGShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-    }
-    return cell;
-}
+//+ (instancetype)cellWithTableView:(UITableView *)tableView
+//{
+//    static NSString *ID = @"shop";
+//    YGShopCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+//    if (cell == nil) {
+//        cell = [[YGShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+//    }
+//    return cell;
+//}
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
 
-        UILabel *nameLabel = [[UILabel alloc] init];
-        nameLabel.font = [UIFont systemFontOfSize:18];
-        [self.contentView addSubview:nameLabel];
-        self.nameLabel = nameLabel;
-        
-        UILabel *addressLabel = [[UILabel alloc] init];
-        addressLabel.font = [UIFont systemFontOfSize:15];
-        [self.contentView addSubview:addressLabel];
-        self.addressLabel = addressLabel;
-        
-        UIButton *distanceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [distanceBtn setBackgroundImage:[UIImage imageNamed:@"icon_bg"] forState:UIControlStateNormal];
-        distanceBtn.titleLabel.font = [UIFont systemFontOfSize:8];
-        [self.contentView addSubview:distanceBtn];
-        self.distanceBtn = distanceBtn;
-        
-        UIButton *timeBtn = [[UIButton buttonWithType:UIButtonTypeCustom];
-        timeBtn.titleLabel.font = [UIFont systemFontOfSize:8];
-                             timeBtn.userInteractionEnabled = NO;
-        [self.contentView addSubview:timeBtn];
-        self.timeBtn = timeBtn;
-        
-        UIButton *routeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [routeBtn setImage:[UIImage imageNamed:@"road_icon"] forState:UIControlStateNormal];
-    }
-    return self;
+
+- (void)setShop:(YGShop *)shop
+{
+    _shop = shop;
+    self.nameLabel.text = shop.name;
+    self.addressLabel.text = shop.address;
+    [self.distanceBtn setTitle:shop.distance forState:UIControlStateNormal];
+    [self.timeBtn setTitle:shop.time forState:UIControlStateNormal];
+    [self.routeBtn setTitle:shop.route forState:UIControlStateNormal];
+    self.iconView.image = [UIImage imageNamed:shop.icon];
 }
 
 @end

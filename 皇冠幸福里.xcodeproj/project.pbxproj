@@ -10,6 +10,7 @@
 		730E87092092AF2100655BC4 /* YGHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730E87082092AF2100655BC4 /* YGHomeCell.m */; };
 		730E870D2092BDE800655BC4 /* YGHomeRequestTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 730E870C2092BDE800655BC4 /* YGHomeRequestTool.m */; };
 		73171E5D20A41D3D006497F0 /* YGHomeStoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 73171E5C20A41D3D006497F0 /* YGHomeStoryVC.m */; };
+		7328279920AE940500C288E8 /* YGShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7328279820AE940500C288E8 /* YGShopCell.xib */; };
 		733A25BE208DC39D00D9D001 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 733A25BD208DC39D00D9D001 /* AppDelegate.m */; };
 		733A25C4208DC39D00D9D001 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 733A25C2208DC39D00D9D001 /* Main.storyboard */; };
 		733A25C6208DC39D00D9D001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 733A25C5208DC39D00D9D001 /* Assets.xcassets */; };
@@ -162,6 +163,7 @@
 		730E870C2092BDE800655BC4 /* YGHomeRequestTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGHomeRequestTool.m; sourceTree = "<group>"; };
 		73171E5B20A41D3D006497F0 /* YGHomeStoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGHomeStoryVC.h; sourceTree = "<group>"; };
 		73171E5C20A41D3D006497F0 /* YGHomeStoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGHomeStoryVC.m; sourceTree = "<group>"; };
+		7328279820AE940500C288E8 /* YGShopCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YGShopCell.xib; sourceTree = "<group>"; };
 		733A25B9208DC39D00D9D001 /* 皇冠幸福里.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "皇冠幸福里.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		733A25BC208DC39D00D9D001 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		733A25BD208DC39D00D9D001 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 			children = (
 				73FFFAFD20AD45B900A3DB87 /* YGShopCell.h */,
 				73FFFAFE20AD45B900A3DB87 /* YGShopCell.m */,
+				7328279820AE940500C288E8 /* YGShopCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1231,6 +1234,7 @@
 				739DCC0E209C2C5D0080005A /* AMap.bundle in Resources */,
 				733A25C9208DC39D00D9D001 /* LaunchScreen.storyboard in Resources */,
 				B63757E5208E24F9008A6EA1 /* Info.plist in Resources */,
+				7328279920AE940500C288E8 /* YGShopCell.xib in Resources */,
 				733A25C6208DC39D00D9D001 /* Assets.xcassets in Resources */,
 				B63757D8208E24F9008A6EA1 /* Info.plist in Resources */,
 				B6B9C532209801F000C3F7C0 /* Info.plist in Resources */,

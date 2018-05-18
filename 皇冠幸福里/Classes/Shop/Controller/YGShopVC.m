@@ -10,12 +10,15 @@
 #import <MAMapKit/MAMapKit.h>
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
+#import "YGShopCell.h"
 
-@interface YGShopVC () <AMapLocationManagerDelegate, MAMapViewDelegate, AMapSearchDelegate>
+@interface YGShopVC () <AMapLocationManagerDelegate, MAMapViewDelegate, AMapSearchDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) AMapLocationManager *locMgr;
 @property (nonatomic, strong) AMapSearchAPI *mapSearch;
 @property (nonatomic, strong) MAPointAnnotation *pointAnnotaiton;
 @property (nonatomic, weak) MAMapView *AMapView;
+@property (nonatomic, weak) UITableView *shopListView;
+@property (nonatomic, strong) NSArray *shops;
 @end
 
 @implementation YGShopVC
@@ -50,11 +53,23 @@
     return _mapSearch;
 }
 
+- (NSArray *)shops
+{
+    if (_shops == nil) {
+        _shops = [NSArray array];
+    }
+    return _shops;
+}
+
 #pragma mark - 生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setupAppearance];
+    
+    [self setupAMapView];
+    
+    [self setupShopListView];
 }
 
 - (void)setupAppearance
@@ -66,6 +81,7 @@
     [searchBtn sizeToFit];
     UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithCustomView:searchBtn];
     self.navigationItem.rightBarButtonItems = @[searchItem];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)setupAMapView
@@ -80,6 +96,9 @@
 - (void)setupShopListView
 {
     UITableView *shopListView = [[UITableView alloc] init];
+    shopListView.delegate = self;
+    [self.view addSubview:shopListView];
+    self.shopListView = shopListView;
 }
 
 - (void)searchShop
@@ -95,5 +114,23 @@
         make.left.top.right.equalTo(self.view);
         make.height.equalTo(self.view).multipliedBy(0.5);
     }];
+    
+    [self.shopListView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.top.equalTo(self.AMapView.mas_bottom);
+    }];
+}
+
+#pragma mark - UITableViewDelegate UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 100;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    YGShopCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"YGShopCell" owner:nil options:nil] lastObject];
+    cell.shop = self.shops[indexPath.row];
+    return cell;
 }
 @end
