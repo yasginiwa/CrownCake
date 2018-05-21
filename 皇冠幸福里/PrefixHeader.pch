@@ -15,6 +15,7 @@
 #import "UIView+Extension.h"
 #import "UIButton+Extension.h"
 #import "UIImage+Extsnsion.h"
+#import "NSString+Extension.h"
 #import "NSArray+RandomObj.h"
 #import "SVProgressHUD.h"
 #import "UIImageView+WebCache.h"

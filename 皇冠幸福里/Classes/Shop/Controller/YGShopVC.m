@@ -53,6 +53,7 @@
 {
     YGShopMapView *shopMapView = [[YGShopMapView alloc] init];
     [self.view addSubview:shopMapView];
+    [self.shops addObjectsFromArray:shopMapView.shops];
     self.shopMapView = shopMapView;
 }
 
@@ -87,7 +88,7 @@
 #pragma mark - UITableViewDelegate UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 100;
+    return self.shops.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

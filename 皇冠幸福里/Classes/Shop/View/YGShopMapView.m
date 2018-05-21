@@ -99,7 +99,7 @@
     
     request.location = [AMapGeoPoint locationWithLatitude:annotation.coordinate.latitude longitude:annotation.coordinate.longitude];
     request.keywords = @"皇冠蛋糕";
-    request.radius = 200000;
+    request.radius = 50000;
     
     /* 按照距离排序 */
     request.sortrule            = 0;
@@ -112,6 +112,19 @@
 - (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response
 {
     if (response.pois.count == 0) return;
+    
+    for (AMapPOI *poi in response.pois) {
+        YGShop *shop = [[YGShop alloc] init];
+        NSUInteger startIndex = [poi.name rangeOfString:@"("].location + 1;
+        NSUInteger length = [poi.name rangeOfString:@")"].location - startIndex;
+        shop.name = [poi.name substringWithRange:NSMakeRange(startIndex, length)];
+        shop.address = [NSString stringWithFormat:@"%@%@%@", poi.city, poi.district, poi.address];
+        shop.distance = [NSString stringWithDistance:poi.distance];
+//        shop.
+        [self.shops addObject:shop];
+    }
+    
+    self;
     
     //解析response获取POI信息
 //    AMapPOI *shopPoi = [response.pois firstObject];
