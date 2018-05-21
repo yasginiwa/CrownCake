@@ -36,6 +36,7 @@
 		736F0EE7208EF35800EB702E /* YGMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 736F0EE6208EF35800EB702E /* YGMapView.m */; };
 		736F0EEA208EF38A00EB702E /* YGHomeProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 736F0EE9208EF38A00EB702E /* YGHomeProduct.m */; };
 		736F0EF0208F1B5E00EB702E /* YGHomeFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 736F0EEF208F1B5E00EB702E /* YGHomeFrame.m */; };
+		7376579720B2603B00D55EF5 /* YGShopMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7376579620B2603B00D55EF5 /* YGShopMapView.m */; };
 		739DCBF8209C0DE20080005A /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCBF7209C0DE20080005A /* MAMapKit.framework */; };
 		739DCBFB209C0DEB0080005A /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCBF9209C0DEB0080005A /* AMapFoundationKit.framework */; };
 		739DCBFC209C0DEB0080005A /* AMapLocationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739DCBFA209C0DEB0080005A /* AMapLocationKit.framework */; };
@@ -213,6 +214,8 @@
 		736F0EE9208EF38A00EB702E /* YGHomeProduct.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGHomeProduct.m; sourceTree = "<group>"; };
 		736F0EEE208F1B5E00EB702E /* YGHomeFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGHomeFrame.h; sourceTree = "<group>"; };
 		736F0EEF208F1B5E00EB702E /* YGHomeFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGHomeFrame.m; sourceTree = "<group>"; };
+		7376579520B2603B00D55EF5 /* YGShopMapView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YGShopMapView.h; sourceTree = "<group>"; };
+		7376579620B2603B00D55EF5 /* YGShopMapView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YGShopMapView.m; sourceTree = "<group>"; };
 		739DCBF7209C0DE20080005A /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MAMapKit.framework; path = "皇冠幸福里/MAMapKit.framework"; sourceTree = "<group>"; };
 		739DCBF9209C0DEB0080005A /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapFoundationKit.framework; path = "皇冠幸福里/AMapFoundationKit.framework"; sourceTree = "<group>"; };
 		739DCBFA209C0DEB0080005A /* AMapLocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapLocationKit.framework; path = "皇冠幸福里/AMapLocationKit.framework"; sourceTree = "<group>"; };
@@ -831,6 +834,8 @@
 				73FFFAFD20AD45B900A3DB87 /* YGShopCell.h */,
 				73FFFAFE20AD45B900A3DB87 /* YGShopCell.m */,
 				7328279820AE940500C288E8 /* YGShopCell.xib */,
+				7376579520B2603B00D55EF5 /* YGShopMapView.h */,
+				7376579620B2603B00D55EF5 /* YGShopMapView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1282,6 +1287,7 @@
 				B6B9C531209801F000C3F7C0 /* FMResultSet.m in Sources */,
 				B63757D1208E24F9008A6EA1 /* MASLayoutConstraint.m in Sources */,
 				736F0EE7208EF35800EB702E /* YGMapView.m in Sources */,
+				7376579720B2603B00D55EF5 /* YGShopMapView.m in Sources */,
 				736F0EBF208EC1B900EB702E /* YGMainNavVC.m in Sources */,
 				B6D35A8720A05D5A00BED18D /* MJRefreshAutoFooter.m in Sources */,
 				B63757CE208E24F9008A6EA1 /* MASCompositeConstraint.m in Sources */,
